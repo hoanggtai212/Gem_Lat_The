@@ -44,13 +44,7 @@ let currentTrackIndex = 0;
 let flippedCards = [];
 let matchedPairs = 0;
 let isTransitioning = false;
-if (level === 1) {
-    totalPairs = 6;
-} else if (level === 2) {
-    totalPairs = 8;
-} else {
-    totalPairs = 10;
-}
+let totalPairs = 8;
 
 let score = 100;
 let timeLeft = 60;
@@ -257,7 +251,13 @@ function setupGame(level) {
     matchedPairs = 0;
     isTransitioning = false;
 
+    if (level === 1) {
+    totalPairs = 6;
+} else if (level === 2) {
     totalPairs = 8;
+} else {
+    totalPairs = 10;
+}
 
     let deck = [];
     if (level === 3) {
