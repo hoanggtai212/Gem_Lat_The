@@ -21,6 +21,13 @@ body {
     background: linear-gradient(135deg, #500000, #8B0000, #BE0000);
 }
 
+.game-board {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    justify-content: center;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
 .wave-bg {
     position: fixed;
     top: 0;
