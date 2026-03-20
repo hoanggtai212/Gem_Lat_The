@@ -434,14 +434,18 @@ function gameOver(reason) {
     let isSuccess = false;
 
     if (reason === "complete") {
-        if (score >= 50) {
-            title = "Thành Công";
-            isSuccess = true;
+    if (score >= 50) {
+        if (currentLevel === 3) {
+            title = "🎉 YOU WIN GAME 🎉";
         } else {
-            title = "Điểm dưới 50";
-            isSuccess = false;
+            title = "Thành Công";
         }
-    } else if (reason === "timeout") {
+        isSuccess = true;
+    } else {
+        title = "Điểm dưới 50";
+        isSuccess = false;
+    }
+} else if (reason === "timeout") {
         title = "Hết thời gian";
         isSuccess = false;
     } else if (reason === "no-score") {
