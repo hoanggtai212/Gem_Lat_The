@@ -613,15 +613,6 @@ body {
     max-width: 900px;
 }
 
-@media (min-width: 900px) {
-
-    .game-board.level-1,
-    .game-board.level-2,
-    .game-board.level-3 {
-        grid-template-columns: repeat(8, 1fr);
-        max-width: 1200px;
-    }
-}
 
 .game-board .card {
     max-height: 25vh;
