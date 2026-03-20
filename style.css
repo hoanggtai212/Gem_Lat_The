@@ -776,12 +776,6 @@ body {
         padding: 10px;
     }
 
-    .game-board.level-1,
-    .game-board.level-2,
-    .game-board.level-3 {
-        grid-template-columns: repeat(4, 1fr);
-    }
-
     .card {
         max-height: 20vh;
     }
