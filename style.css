@@ -590,19 +590,18 @@ body {
 
 .game-board {
     display: grid;
-    grid-gap: 15px;
-    width: 95%;
-    perspective: 1000px;
-    max-height: 85vh;
-    background: rgba(184, 134, 11, 0.45);
-    padding: 20px;
-    border: 5px solid var(--wave-color);
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    grid-template-columns: repeat(auto-fit, minmax(120px, 120px));
+    justify-content: center;
+    align-content: center;
     justify-items: center;
-    position: relative;
-    z-index: 10;
-    /* Above watermark */
+    gap: 15px;
+
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+
+    padding: 20px;
+    border-radius: 20px;
 }
 
 /* Specific grids for levels */
