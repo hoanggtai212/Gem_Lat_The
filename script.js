@@ -155,6 +155,26 @@ function startGame(level) {
     // Setup Board (Hidden cards initially)
     setupGame(level);
 
+    const totalCards = totalPairs * 2;
+
+    // Số cột gần hình vuông nhất
+    const cols = Math.ceil(Math.sqrt(totalCards));
+
+    // Giới hạn số cột để không bị quá dài
+    const maxCols = 6;
+    const finalCols = Math.min(cols, maxCols);
+
+    // Set grid
+    gameBoard.style.gridTemplateColumns = `repeat(${finalCols}, 1fr)`;
+    
+    // Căn giữa
+    gameBoard.style.justifyContent = "center";
+    gameBoard.style.justifyItems = "center";
+
+    // Giới hạn chiều rộng board
+    gameBoard.style.maxWidth = `${finalCols * 120}px`;
+    gameBoard.style.margin = "0 auto";
+    
     // Start Countdown
     runCountdown(() => {
         isGameRunning = true;
