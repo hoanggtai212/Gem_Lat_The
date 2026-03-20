@@ -44,7 +44,13 @@ let currentTrackIndex = 0;
 let flippedCards = [];
 let matchedPairs = 0;
 let isTransitioning = false;
-let totalPairs = 8;
+if (level === 1) {
+    totalPairs = 6;
+} else if (level === 2) {
+    totalPairs = 8;
+} else {
+    totalPairs = 10;
+}
 
 let score = 100;
 let timeLeft = 60;
