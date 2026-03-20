@@ -604,15 +604,6 @@ body {
     border-radius: 20px;
 }
 
-/* Specific grids for levels */
-.game-board.level-1,
-.game-board.level-2,
-.game-board.level-3 {
-    grid-template-columns: repeat(4, 1fr);
-    max-width: 900px;
-}
-
-
 .game-board .card {
     max-height: 25vh;
 }
