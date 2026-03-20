@@ -304,13 +304,14 @@ function setupGame(level) {
 }
 
 function getIndices(total, count) {
-    const all = Array.from({ length: total }, (_, i) => i + 1);
-    const res = [];
-    for (let i = 0; i < count; i++) {
-        const rand = Math.floor(Math.random() * all.length);
-        res.push(all.splice(rand, 1)[0]);
+    const numbers = [];
+    while (numbers.length < count) {
+        let rand = Math.floor(Math.random() * total) + 1;
+        if (!numbers.includes(rand)) {
+            numbers.push(rand);
+        }
     }
-    return res;
+    return numbers;
 }
 
 function flipCard(card) {
