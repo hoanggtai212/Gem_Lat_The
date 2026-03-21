@@ -157,12 +157,15 @@ function startGame(level) {
 
     const totalCards = totalPairs * 2;
 
-    // Số cột gần hình vuông nhất
-    const cols = Math.ceil(Math.sqrt(totalCards));
+    let finalCols;
 
-    // Giới hạn số cột để không bị quá dài
-    const maxCols = 6;
-    const finalCols = Math.min(cols, maxCols);
+    if (totalCards === 6) {
+        finalCols = 3; // fix cứng 3x2 cho level 3
+    } else {
+        const cols = Math.ceil(Math.sqrt(totalCards));
+        const maxCols = 6;
+        finalCols = Math.min(cols, maxCols);
+    }
 
     // Set grid
     gameBoard.style.gridTemplateColumns = `repeat(${finalCols}, 1fr)`;
