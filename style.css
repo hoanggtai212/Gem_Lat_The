@@ -337,6 +337,18 @@ body {
     }
 }
 
+@keyframes shakeShuffle {
+    0%, 100% { transform: translate(0, 0); }
+    20% { transform: translate(-5px, 3px); }
+    40% { transform: translate(5px, -3px); }
+    60% { transform: translate(-3px, 5px); }
+    80% { transform: translate(3px, -5px); }
+}
+
+.card.shake {
+    animation: shakeShuffle 0.4s ease;
+}
+
 /* Game Screen Styles */
 .game-screen {
     position: fixed;
@@ -763,18 +775,6 @@ body {
         grid-gap: 8px;
         padding: 10px;
     }
-
-    @keyframes shakeShuffle {
-    0%, 100% { transform: translate(0, 0); }
-    20% { transform: translate(-5px, 3px); }
-    40% { transform: translate(5px, -3px); }
-    60% { transform: translate(-3px, 5px); }
-    80% { transform: translate(3px, -5px); }
-    }
-
-.card.shuffling {
-    animation: shakeShuffle 0.4s ease;
-}
     
     .card {
         max-height: 20vh;
