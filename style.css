@@ -22,10 +22,18 @@ body {
 }
 
 .game-board {
+    display: grid;
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     justify-content: center;
+    justify-items: center;
+    align-content: center;
+    gap: 15px;
+
+    width: 100%;
     max-width: 500px;
     margin: 0 auto;
+    padding: 20px;
+    border-radius: 20px;
 }
 
 .wave-bg {
@@ -598,20 +606,6 @@ body {
     /* Behind cards which are at 1+ or relative */
     /* filter: blur(0px) grayscale(0.5); */
     /* Blurry and subtle */
-}
-
-.game-board {
-    display: grid;
-    justify-content: center;
-    align-content: center;
-    justify-items: center;
-    gap: 15px;
-
-    width: 100%;
-    margin: 0 auto;
-
-    padding: 20px;
-    border-radius: 20px;
 }
 
 .game-board .card {
