@@ -100,9 +100,9 @@ body {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    background: linear-gradient(135deg, #ff4da6, #ff1a8c);
-    border: 3px solid #ff9ecb;
-    box-shadow: 0 10px 30px rgba(255, 20, 147, 0.5);
+    background: linear-gradient(135deg, #ffb6c1, #ff85c1);
+    border: 2px solid #ff9ecb;
+    box-shadow: 0 8px 20px rgba(255, 105, 180, 0.3);
     padding: 2.5rem;
     border-radius: 20px;
     min-width: 420px;
