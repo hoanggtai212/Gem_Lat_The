@@ -143,13 +143,15 @@ body {
 
 .back-btn {
     margin-top: 10px;
-    background: linear-gradient(135deg, #ff85c1, #ff4da6) !important;
-    border: none !important;
-    color: white !important;
-    box-shadow: 0 5px 15px rgba(255, 20, 147, 0.5);
+    background: linear-gradient(135deg, #ff9ecb, #ff66b2);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    color: white;
+    border: 2px solid transparent;
+    filter: brightness(0.9);
 }
 
 .back-btn:hover {
+    transition: all 0.25s ease;
     transform: scale(1.05);
     background: #fff !important;
     color: #ff1a8c !important;
