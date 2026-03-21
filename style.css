@@ -494,7 +494,8 @@ body {
 }
 
 .modal-content {
-    background: linear-gradient(135deg, #8B0000, #500000);
+    background: linear-gradient(135deg, #ffe4ec, #ffc1d3);
+    border: 3px solid #ffb6c1;
     padding: 3rem;
     border-radius: 30px;
     border: 4px solid var(--wave-color);
