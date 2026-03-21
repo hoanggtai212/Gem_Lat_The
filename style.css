@@ -590,14 +590,12 @@ body {
 
 .game-board {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 120px));
     justify-content: center;
     align-content: center;
     justify-items: center;
     gap: 15px;
 
     width: 100%;
-    max-width: 600px;
     margin: 0 auto;
 
     padding: 20px;
