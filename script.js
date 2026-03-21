@@ -502,13 +502,13 @@ function gameOver(reason) {
                 ? `<button class="btn" onclick="startGame(${currentLevel + 1})">Next Level</button>`
                 : `<button class="btn" onclick="startGame(1)">Play Again</button>`
         }
-        <button class="btn back-btn" onclick="exitGame()">Exit</button>
+        <button class="btn exit-btn" onclick="exitGame()">Exit</button>
         `;
     } else {
         const retryLevel = currentLevel >= 2 ? 1 : currentLevel;
         modalButtons.innerHTML = `
           <button class="btn" onclick="startGame(${retryLevel})">Replay</button>
-          <button class="btn back-btn" onclick="exitGame()">Exit</button>
+          <button class="btn exit-btn" onclick="exitGame()">Exit</button>
         `;
     }
 
