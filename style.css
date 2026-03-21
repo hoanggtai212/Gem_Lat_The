@@ -79,7 +79,11 @@ body {
     text-shadow: 0 0 10px rgba(255, 105, 180, 0.3);
     margin-bottom: 2rem;
     animation: titleFloat 3s ease-in-out infinite;
+    text-shadow: 
+    0 0 8px rgba(255, 105, 180, 0.4),
+    0 0 18px rgba(255, 105, 180, 0.3);
 }
+
 @keyframes titleFloat {
 
     0%,
@@ -111,6 +115,9 @@ body {
     min-width: 420px;
     align-items: center;
     outline: 1px solid rgba(255, 182, 193, 0.3);
+    box-shadow: 
+        0 12px 35px rgba(255, 20, 147, 0.25),
+        inset 0 0 15px rgba(255, 255, 255, 0.25);
 }
 
 .options-frame h2 {
@@ -158,19 +165,37 @@ body {
 
 .back-btn {
     margin-top: 10px;
-    background: linear-gradient(135deg, #ff9ecb, #ff66b2);
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    text-transform: uppercase;
     color: white;
-    border: 2px solid transparent;
-    filter: brightness(0.9);
+    background: linear-gradient(135deg, #ff85c1, #ff4da6);
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50px;
+    padding: 14px 35px;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    box-shadow: 
+        0 6px 18px rgba(255, 20, 147, 0.35),
+        inset 0 0 8px rgba(255, 255, 255, 0.2);
+    transition: all 0.25s ease;
+    width: 100%;
+    max-width: 220px;
 }
 
 .back-btn:hover {
-    transition: all 0.25s ease;
-    transform: scale(1.05);
-    background: #fff !important;
-    color: #ff1a8c !important;
-    box-shadow: 0 8px 20px rgba(255, 20, 147, 0.6);
+    transform: scale(1.07) translateY(-2px);
+    background: linear-gradient(135deg, #ffffff, #ffe4ec);
+    color: #ff1493;
+    box-shadow: 
+        0 10px 25px rgba(255, 20, 147, 0.5),
+        0 0 15px rgba(255, 105, 180, 0.6);
+}
+
+.btn:active, .back-btn:active {
+    transform: scale(0.95);
+    box-shadow: inset 0 3px 10px rgba(0,0,0,0.3);
 }
 
 .tutorial-content {
