@@ -14,11 +14,11 @@
 
 body {
     background: 
-        radial-gradient(circle at center, #ffc0cb, #ff85c1, #ff4da6),
-        radial-gradient(circle at 20% 20%, #ffffff33 2px, transparent 2px),
-        radial-gradient(circle at 80% 80%, #ffffff33 2px, transparent 2px);
+        radial-gradient(circle at 30% 20%, #ffd6ec, transparent 60%),
+        radial-gradient(circle at 70% 80%, #ff85c1, transparent 60%),
+        linear-gradient(135deg, #ff9ecb, #ff69b4);
 
-    background-size: cover, 40px 40px, 40px 40px;
+    background-size: cover;
 }
 
 .game-board {
@@ -54,9 +54,9 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url("data:image/svg+xml,%3Csvg width='100' height='30' viewBox='0 0 100 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 15 Q25 5, 50 15 T100 15' fill='none' stroke='%23ff1493' stroke-width='2'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='30' viewBox='0 0 100 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 15 Q25 5, 50 15 T100 15' fill='none' stroke='%23ff1493' stroke-width='1.5'/%3E%3C/svg%3E");
     background-size: 120px 35px;
-    opacity: 0.4;
+    opacity: 0.6;
 }
 
 .main-container {
@@ -74,13 +74,11 @@ body {
     font-family: 'Dancing Script', cursive;
     font-size: 5rem;
     color: #ff1493;
-    text-shadow: 0 0 15px rgba(255, 20, 147, 0.8),
-                 2px 2px 10px rgba(0,0,0,0.5);
-    padding: 10px 25px;
-    border-radius: 20px;
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(6px);
-    margin-bottom: 3rem;
+    text-shadow: 
+        0 0 10px rgba(255, 20, 147, 0.7),
+        0 0 20px rgba(255, 105, 180, 0.6),
+        2px 2px 8px rgba(0,0,0,0.4);
+    margin-bottom: 2rem;
     animation: titleFloat 3s ease-in-out infinite;
 }
 
@@ -100,11 +98,14 @@ body {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    background: linear-gradient(135deg, #ffb6c1, #ff85c1);
-    border: 2px solid #ff9ecb;
-    box-shadow: 0 8px 20px rgba(255, 105, 180, 0.3);
+    background: rgba(255, 255, 255, 0.18); /* giảm xuống */
+    backdrop-filter: blur(18px);
+    border: 1.5px solid rgba(255, 255, 255, 0.35);
+    box-shadow: 
+        0 10px 30px rgba(255, 20, 147, 0.25),
+        inset 0 0 15px rgba(255, 255, 255, 0.2);
     padding: 2.5rem;
-    border-radius: 20px;
+    border-radius: 25px;
     min-width: 420px;
     align-items: center;
 }
@@ -124,6 +125,7 @@ body {
     text-transform: uppercase;
     color: white;
     background: linear-gradient(135deg, #ff85c1, #ff4da6);
+    box-shadow: 0 5px 15px rgba(255, 20, 147, 0.3);
     border: 2px solid transparent;
     padding: 14px 35px;
     border-radius: 50px;
@@ -131,13 +133,12 @@ body {
     transition: all 0.25s ease;
     width: 100%;
     max-width: 220px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .btn:hover {
     transform: scale(1.05);
-    background-color: #fff;
-    color: #D20000;
+    background: #fff;
+    color: #ff1493;
     box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
 }
 
