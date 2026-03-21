@@ -399,8 +399,6 @@ function checkMatch() {
                 }, 300);
                 consecutiveMistakes = 0;
             }
-            }
-
             isTransitioning = false;
         }, 1000);
     }
