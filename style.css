@@ -116,9 +116,10 @@ body {
 .options-frame h2 {
     font-family: 'Dancing Script', cursive;
     font-size: 2.5rem;
-    color: #fff; /* đổi sang trắng */
-    text-shadow: 0 0 10px rgba(0,0,0,0.4);
-    margin-bottom: 1rem;
+    background: linear-gradient(45deg, #ff9ecb, #ff69b4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 10px rgba(255, 105, 180, 0.3);
 }
 
 .btn {
