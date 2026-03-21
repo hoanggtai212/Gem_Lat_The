@@ -207,12 +207,8 @@ body {
 
 .exit-btn:hover {
     transform: scale(1.08) translateY(-2px);
-    background: linear-gradient(135deg, #ffffff, #ffe5e5);
-    color: #cc0000 !important;
-    box-shadow: 
-        0 10px 25px rgba(255, 0, 0, 0.6),
-        0 0 15px rgba(255, 50, 50, 0.8);
     background: linear-gradient(135deg, #ff2e2e, #990000);
+    color: #ffffff !important;
     box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
 }
 
