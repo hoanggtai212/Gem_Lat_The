@@ -3,7 +3,7 @@
 :root {
     --bg-dark: #8B0000;
     --bg-light: #D20000;
-    --wave-color: #FFD700;
+    --wave-color: #ff69b4; /* hồng chủ đạo */
 }
 
 * {
