@@ -37,6 +37,10 @@ body {
     border-radius: 20px;
 }
 
+.wave-bg {
+    position: relative;
+}
+
 .wave-bg::before {
     content: '';
     position: absolute;
