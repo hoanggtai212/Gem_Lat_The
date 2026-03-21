@@ -485,7 +485,6 @@ body {
     border: 3px solid #ffb6c1;
     padding: 3rem;
     border-radius: 30px;
-    border: 4px solid var(--wave-color);
     text-align: center;
     max-width: 400px;
     width: 90%;
@@ -546,7 +545,7 @@ body {
 .modal-score {
     font-size: 1.5rem;
     margin-bottom: 2rem;
-    color: #fff;
+    color: #d63384;
 }
 
 .modal-score span {
