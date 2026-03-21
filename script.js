@@ -388,7 +388,7 @@ function checkMatch() {
             flippedCards = [];
 
             // Special Mechanic Level 3: Shuffle remaining cards on 3 consecutive mismatches
-            if (currentLevel === 3) {
+            if (currentLevel >= 3) {
                 consecutiveMistakes++;
                 if (consecutiveMistakes >= 3) {
                     shuffleRemainingCards();
