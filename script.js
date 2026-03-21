@@ -274,7 +274,7 @@ function setupGame(level) {
     matchedPairs = 0;
     isTransitioning = false;
 
-    totalPairs = level + 1;
+    totalPairs = Math.min(level + 1, 12);
 
     let deck = [];
     if (level === 3) {
