@@ -18,7 +18,7 @@ body {
     color: #FFD700;
     overflow-x: hidden;
     position: relative;
-    background: linear-gradient(135deg, #500000, #8B0000, #BE0000);
+    background: linear-gradient(135deg, #ffe4ec, #ffc1d3, #ffd6e0);
 }
 
 .game-board {
@@ -39,6 +39,7 @@ body {
 .wave-bg {
     position: fixed;
     top: 0;
+    background-image: none;
     left: 0;
     width: 100%;
     height: 100%;
