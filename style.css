@@ -87,11 +87,11 @@ body {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    background: rgba(139, 0, 0, 0.85);
+    background: linear-gradient(135deg, #ff4da6, #ff1a8c);
+    border: 3px solid #ff9ecb;
+    box-shadow: 0 10px 30px rgba(255, 20, 147, 0.5);
     padding: 2.5rem;
-    border: 3px double var(--wave-color);
     border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     min-width: 420px;
     align-items: center;
 }
