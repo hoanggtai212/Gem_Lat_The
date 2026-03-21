@@ -388,12 +388,17 @@ function checkMatch() {
             flippedCards = [];
 
             // Special Mechanic Level 3: Shuffle remaining cards on 3 consecutive mismatches
-            if (currentLevel >= 3) {
-                consecutiveMistakes++;
-                    if (consecutiveMistakes >= Math.max(5 - Math.floor(currentLevel / 5), 3)) {
-                        shuffleRemainingCards();
-                        consecutiveMistakes = 0;
-                    }
+            const limit = Math.max(5 - Math.floor(currentLevel / 5), 3);
+            if (consecutiveMistakes >= limit) {
+                const cards = document.querySelectorAll(".card:not(.matched)");
+            // RUNG TRƯỚC
+                cards.forEach(card => card.classList.add("shake"));
+                setTimeout(() => {
+                    cards.forEach(card => card.classList.remove("shake"));
+                    shuffleRemainingCards(); // rồi mới shuffle
+                }, 300);
+                consecutiveMistakes = 0;
+            }
             }
 
             isTransitioning = false;
