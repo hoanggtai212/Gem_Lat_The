@@ -690,7 +690,7 @@ body {
     backface-visibility: hidden;
     border-radius: 15px;
     border: 2px solid #ffb6c1;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 5px 15px rgba(255, 182, 193, 0.6);
     overflow: hidden;
     background: #fff0f5;
 }
