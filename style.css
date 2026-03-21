@@ -15,7 +15,7 @@
 body {
     min-height: 100vh;
     font-family: 'Montserrat', sans-serif;
-    color: #FFD700;
+    color: #ff69b4; /* hồng đậm cute hơn */
     overflow-x: hidden;
     position: relative;
     background: linear-gradient(135deg, #ffe4ec, #ffc1d3, #ffd6e0);
