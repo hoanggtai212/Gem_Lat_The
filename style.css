@@ -13,7 +13,7 @@
 }
 
 body {
-    background: linear-gradient(135deg, #ffb6d9, #ff85c1, #ff5ca8);
+    background: radial-gradient(circle at center, #33001a, #0d0010);
 
     background-image: 
         radial-gradient(circle at 20% 20%, #ffffff55 2px, transparent 2px),
