@@ -390,10 +390,10 @@ function checkMatch() {
             // Special Mechanic Level 3: Shuffle remaining cards on 3 consecutive mismatches
             if (currentLevel >= 3) {
                 consecutiveMistakes++;
-                if (consecutiveMistakes >= 3) {
-                    shuffleRemainingCards();
-                    consecutiveMistakes = 0; // Reset after shuffle
-                }
+                    if (consecutiveMistakes >= Math.max(5 - Math.floor(currentLevel / 5), 3)) {
+                        shuffleRemainingCards();
+                        consecutiveMistakes = 0;
+                    }
             }
 
             isTransitioning = false;
