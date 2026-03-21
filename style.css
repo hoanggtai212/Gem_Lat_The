@@ -423,10 +423,7 @@ body {
     align-items: center;
     justify-content: center;
     padding: 10px;
-    background: 
-        radial-gradient(circle at 20% 20%, rgba(255, 105, 180, 0.15), transparent 40%),
-        radial-gradient(circle at 80% 80%, rgba(255, 20, 147, 0.15), transparent 40%),
-        linear-gradient(135deg, #0a0a0a, #1a000a, #000000);
+    background: transparent;
 }
 
 .game-status-bar {
