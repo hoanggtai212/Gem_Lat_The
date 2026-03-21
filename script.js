@@ -386,7 +386,7 @@ function checkMatch() {
             const penalty = currentLevel >= 2 ? -10 : -5;
             updateScore(penalty);
             flippedCards = [];
-
+            consecutiveMistakes++;
             // Special Mechanic Level 3: Shuffle remaining cards on 3 consecutive mismatches
             const limit = Math.max(5 - Math.floor(currentLevel / 5), 3);
             if (consecutiveMistakes >= limit) {
