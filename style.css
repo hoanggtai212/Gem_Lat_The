@@ -475,7 +475,7 @@ body {
     /* Default full */
     background: linear-gradient(90deg, #FFD700, #FFA500);
     box-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
-    transition: width 0.1s linear;
+    transition: width 0.3s linear;
     /* Smooth movement */
 }
 
