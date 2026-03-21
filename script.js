@@ -492,24 +492,15 @@ function gameOver(reason) {
     modalButtons.innerHTML = "";
 
     if (isSuccess) {
-        if (currentLevel === 1) {
-            modalButtons.innerHTML = `
-            <button class="btn" onclick="startGame(1)">Replay</button>
-            <button class="btn" onclick="startGame(2)">Next Level</button>
-            <button class="btn back-btn" onclick="exitGame()">Exit</button>
-          `;
-        } else if (currentLevel === 2) {
-            modalButtons.innerHTML = `
-            <button class="btn" onclick="startGame(1)">Replay</button>
-            <button class="btn" onclick="startGame(3)">Next Level</button>
-            <button class="btn back-btn" onclick="exitGame()">Exit</button>
-          `;
-        } else {
-            modalButtons.innerHTML = `
-            <button class="btn" onclick="startGame(1)">Replay</button>
-            <button class="btn back-btn" onclick="exitGame()">Exit</button>
-          `;
+    modalButtons.innerHTML = `
+        <button class="btn" onclick="startGame(${currentLevel})">Replay</button>
+        ${
+            currentLevel < 11
+                ? `<button class="btn" onclick="startGame(${currentLevel + 1})">Next Level</button>`
+                : `<button class="btn" onclick="startGame(1)">Play Again</button>`
         }
+        <button class="btn back-btn" onclick="exitGame()">Exit</button>
+        `;
     } else {
         const retryLevel = currentLevel >= 2 ? 1 : currentLevel;
         modalButtons.innerHTML = `
