@@ -570,7 +570,7 @@ function spawnBackgroundBatch() {
                 icon.className = "falling-icon";
                 const posX = c * cellWidth + Math.random() * cellWidth;
                 const posY = r * cellHeight + Math.random() * cellHeight;
-                const size = 90 + Math.random() * 90;
+                const size = 50 + Math.random() * 60;
                 const startRot = Math.random() * 60 - 30;
                 const midRot = Math.random() * 40 - 20;
                 icon.style.left = `calc(${posX}% - ${size / 2}px)`;
