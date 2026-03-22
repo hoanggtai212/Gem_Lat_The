@@ -823,6 +823,12 @@ body {
         font-size: 8rem;
     }
 
+    #volume-value {
+    margin-left: 8px;
+    font-weight: bold;
+    color: #ff69b4;
+    }
+    
     .modal-content {
         padding: 1.5rem;
     }
