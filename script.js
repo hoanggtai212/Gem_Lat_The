@@ -611,6 +611,7 @@ function playTrack(index) {
 
     currentTrackIndex = index;
     music.src = playlist[index];
+    music.volume = masterVolume;
     music
         .play()
         .then(() => {
@@ -686,9 +687,21 @@ music.addEventListener("ended", () => {
 function playSFX(audio) {
     if (!audio) return;
     audio.currentTime = 0;
+    audio.volume = masterVolume;
     audio.play().catch((e) => console.log("SFX play error:", e));
 }
 
 document.addEventListener("click", () => {
     playSFX(sfxPop);
 });
+
+const volumeSlider = document.getElementById("volume-slider");
+
+if (volumeSlider) {
+    volumeSlider.addEventListener("input", () => {
+        masterVolume = volumeSlider.value;
+
+        // áp luôn cho nhạc nếu đang phát
+        music.volume = masterVolume;
+    });
+}
