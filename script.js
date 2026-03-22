@@ -696,6 +696,7 @@ document.addEventListener("click", () => {
 });
 
 const volumeSlider = document.getElementById("volume-slider");
+const volumeValue = document.getElementById("volume-value");
 
 if (volumeSlider) {
     volumeSlider.addEventListener("input", () => {
