@@ -701,7 +701,8 @@ const volumeValue = document.getElementById("volume-value");
 if (volumeSlider) {
     volumeSlider.addEventListener("input", () => {
         const vol = volumeSlider.value / 100;
-
+        masterVolume = vol;
+        
         // update số %
         if (volumeValue) {
             volumeValue.innerText = volumeSlider.value + "%";
