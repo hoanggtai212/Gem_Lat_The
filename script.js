@@ -26,6 +26,7 @@ const sfxMoney = document.getElementById("sound-money");
 let isMusicPlaying = false;
 let currentTopic = "Gavv";
 let currentLevel = 1;
+let masterVolume = 0.5;
 
 const availableTopics = [
     { name: "Gavv", iconCount: 16, level1Count: 10, level2Count: 17, logo: "asset/logo/KittyTraiTim.png" },
