@@ -686,9 +686,10 @@ music.addEventListener("ended", () => {
 
 function playSFX(audio) {
     if (!audio) return;
+    audio.pause();          // reset
     audio.currentTime = 0;
-    audio.volume = masterVolume;
-    audio.play().catch((e) => console.log("SFX play error:", e));
+    audio.volume = masterVolume; // 🔥 luôn dùng masterVolume
+    audio.play().catch(() => {});
 }
 
 document.addEventListener("click", () => {
