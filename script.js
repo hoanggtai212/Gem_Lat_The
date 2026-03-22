@@ -701,9 +701,9 @@ function playSFX(audio) {
     audio.play().catch(() => {});
 }
 
-document.addEventListener("click", () => {
-    playSFX(sfxPop);
-});
+// document.addEventListener("click", () => {
+//     playSFX(sfxPop);
+// });
 
 const volumeSlider = document.getElementById("volume-slider");
 const volumeValue = document.getElementById("volume-value");
