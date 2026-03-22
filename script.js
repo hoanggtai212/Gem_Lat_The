@@ -28,9 +28,9 @@ let currentTopic = "Gavv";
 let currentLevel = 1;
 
 const availableTopics = [
-    { name: "Gavv", iconCount: 16, level1Count: 10, level2Count: 17, logo: "asset/logo/Gavv.png" },
-    { name: "Kingohger", iconCount: 11, level1Count: 12, level2Count: 17, logo: "asset/logo/Kingohger.png" },
-    { name: "Zeztz", iconCount: 14, level1Count: 10, level2Count: 23, logo: "asset/logo/Zeztz.png" },
+    { name: "Gavv", iconCount: 16, level1Count: 10, level2Count: 17, logo: "asset/logo/KittyTraiTim.png" },
+    { name: "Kingohger", iconCount: 11, level1Count: 12, level2Count: 17, logo: "asset/logo/KittyNuHoang.png" },
+    { name: "Zeztz", iconCount: 14, level1Count: 10, level2Count: 23, logo: "asset/logo/KittyUnCoffe.png" },
 ];
 
 const playlist = [
