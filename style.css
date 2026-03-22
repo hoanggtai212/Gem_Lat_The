@@ -14,9 +14,9 @@
 
 body {
     background:
-      radial-gradient(circle at 20% 20%, rgba(255,105,180,0.2), transparent 40%),
-      radial-gradient(circle at 80% 80%, rgba(255,20,147,0.2), transparent 40%),
-      linear-gradient(135deg, #000000, #0a0a0a, #000000);
+      radial-gradient(circle at 20% 20%, rgba(255,182,193,0.4), transparent 40%),
+      radial-gradient(circle at 80% 80%, rgba(255,105,180,0.4), transparent 40%),
+      linear-gradient(135deg, #fff0f5, #ffe4ec, #ffd6e7);
 
     background-attachment: fixed;
 }
