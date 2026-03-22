@@ -700,10 +700,21 @@ const volumeValue = document.getElementById("volume-value");
 
 if (volumeSlider) {
     volumeSlider.addEventListener("input", () => {
-        masterVolume = volumeSlider.value / 100;
+        const vol = volumeSlider.value / 100;
 
-        // áp luôn cho nhạc nếu đang phát
-        music.volume = masterVolume;
+        // update số %
+        if (volumeValue) {
+            volumeValue.innerText = volumeSlider.value + "%";
+        }
+
+        // âm thanh
+        music.volume = vol;
+        sfxWin.volume = vol;
+        sfxFail.volume = vol;
+        sfxPop.volume = vol;
+        sfxSwap.volume = vol;
+        sfxTing.volume = vol;
+        sfxMoney.volume = vol;
     });
 }
 
