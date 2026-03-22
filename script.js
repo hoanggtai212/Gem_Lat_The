@@ -699,7 +699,7 @@ const volumeSlider = document.getElementById("volume-slider");
 
 if (volumeSlider) {
     volumeSlider.addEventListener("input", () => {
-        masterVolume = volumeSlider.value;
+        masterVolume = volumeSlider.value / 100;
 
         // áp luôn cho nhạc nếu đang phát
         music.volume = masterVolume;
