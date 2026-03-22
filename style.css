@@ -648,7 +648,7 @@ body {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(1.8);
+    transform: translate(-50%, -50%) scale(1.5);
     width: 100%;
     opacity: 0.2;
     filter: blur(2px) drop-shadow(0 0 20px #ff69b4);
