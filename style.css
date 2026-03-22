@@ -648,14 +648,12 @@ body {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    height: auto;
-    object-fit: contain;
+    transform: translate(-50%, -50%) scale(1.8);
+    width: 100%;
+    opacity: 0.2;
+    filter: blur(2px) drop-shadow(0 0 20px #ff69b4);
     pointer-events: none;
     z-index: 0;
-    width: 90%;
-    max-height: 90%;
-    opacity: 0.35;
 }
 
 .game-board .card {
