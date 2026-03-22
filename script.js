@@ -59,6 +59,15 @@ let consecutiveMistakes = 0;
 window.onload = () => {
     renderTopics();
     renderPlaylist();
+
+    // SET VOLUME BAN ĐẦU
+    const allAudio = [
+        music, sfxWin, sfxFail, sfxPop, sfxSwap, sfxTing, sfxMoney
+    ];
+
+    allAudio.forEach(a => {
+        if (a) a.volume = masterVolume;
+    });
 };
 
 function renderTopics() {
