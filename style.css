@@ -649,18 +649,13 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 60%;
-    /* Large enough but not overwhelming */
     height: auto;
-    max-height: 80%;
     object-fit: contain;
-    opacity: 0.5;
-    /* Faint visible */
     pointer-events: none;
     z-index: 0;
-    /* Behind cards which are at 1+ or relative */
-    /* filter: blur(0px) grayscale(0.5); */
-    /* Blurry and subtle */
+    width: 90%;
+    max-height: 90%;
+    opacity: 0.35;
 }
 
 .game-board .card {
