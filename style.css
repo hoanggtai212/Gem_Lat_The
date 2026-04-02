@@ -124,6 +124,7 @@ body {
     background: linear-gradient(45deg, #ff9ecb, #ff69b4);
     -webkit-background-clip: text;
     color: #ff1493;
+    -webkit-text-fill-color: transparent;
     text-shadow:
         0 0 5px rgba(255,255,255,0.8),
         0 0 10px rgba(255,105,180,0.6),
