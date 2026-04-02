@@ -739,5 +739,11 @@ function toggleVolumeControl() {
     }
 }
 
+// 🔊 thêm âm thanh click cho toàn bộ button
+document.querySelectorAll(".btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+        playSFX(sfxPop);
+    });
+});
 
 
