@@ -81,8 +81,6 @@ body {
         0 4px 12px rgba(255,20,147,0.4);
     background: linear-gradient(45deg, #ff9ecb, #ff69b4, #ffb6c1);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 10px rgba(255, 105, 180, 0.3);
     margin-bottom: 2rem;
     animation: titleFloat 3s ease-in-out infinite;
 }
@@ -128,8 +126,8 @@ body {
     -webkit-text-fill-color: transparent;
     color: #d63384; /* hồng đậm */
     text-shadow: 
-        0 2px 4px rgba(255,255,255,0.7),
-        0 3px 8px rgba(255,105,180,0.4);
+        0 2px 4px rgba(255,255,255,0.8),
+        0 3px 8px rgba(255,105,180,0.5);
 }
 
 .btn {
