@@ -94,6 +94,7 @@ function showFrame(frameId) {
         "topic-frame",
         "tutorial-frame",
         "playlist-frame",
+        "volume-frame",
     ];
     frames.forEach((id) => {
         const el = document.getElementById(id);
@@ -727,15 +728,6 @@ if (volumeSlider) {
         sfxTing.volume = vol;
         sfxMoney.volume = vol;
     });
-}
-
-function toggleVolumeControl() {
-    const box = document.getElementById("volume-box");
-
-    // đóng playlist nếu đang mở
-    showFrame("settings-frame");
-
-    box.classList.toggle("show");
 }
 
 // 🔊 thêm âm thanh click cho toàn bộ button
