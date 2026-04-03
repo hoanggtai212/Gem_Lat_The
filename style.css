@@ -119,16 +119,27 @@ body {
 }
 
 .options-frame h2 {
-    font-family: 'Dancing Script', cursive;
-    font-size: 2.5rem;
-    background: linear-gradient(45deg, #ff9ecb, #ff69b4);
-    -webkit-background-clip: text;
+    font-family: 'Montserrat', sans-serif; /* giống list nhạc */
+    font-size: 1.6rem;
+    font-weight: 700;
     color: #ff1493;
-    -webkit-text-fill-color: transparent;
-    text-shadow:
-        0 0 5px rgba(255,255,255,0.8),
-        0 0 10px rgba(255,105,180,0.6),
-        0 2px 4px rgba(0,0,0,0.5);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    /* ❌ bỏ hết mấy cái gây mờ */
+    background: none;
+    -webkit-background-clip: initial;
+    -webkit-text-fill-color: initial;
+    text-shadow: 0 2px 4px rgba(255,255,255,0.6);
+}
+
+.options-frame h2::after {
+    content: "";
+    display: block;
+    width: 50%;
+    height: 3px;
+    margin: 8px auto 0;
+    background: linear-gradient(90deg, #ff69b4, transparent);
+    border-radius: 10px;
 }
 
 .btn {
