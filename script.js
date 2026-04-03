@@ -387,7 +387,18 @@ function checkMatch() {
             card1.classList.add("matched");
             card2.classList.add("matched");
             playSFX(sfxMoney); // Play money sound on match
-            updateScore(5); // Match +5
+            
+            combo++;
+            maxCombo = Math.max(maxCombo, combo);
+            // tính điểm theo combo
+            let bonus = 5 + (combo * 2); // combo càng cao càng nhiều điểm
+            updateScore(bonus);
+            updateScore(penalty);
+            flippedCards = [];
+            consecutiveMistakes++;
+            combo = 0; // reset combo
+            console.log("Combo:", combo);
+            
             matchedPairs++;
             consecutiveMistakes = 0; // Reset on match
             flippedCards = [];
