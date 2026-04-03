@@ -216,6 +216,8 @@ function startGame(level) {
     gameBoard.style.justifyContent = "center";
     gameBoard.style.alignContent = "center";
     gameBoard.style.justifyItems = "center";
+    gameBoard.style.display = "grid";
+    gameBoard.style.placeContent = "center";
 
     // Giới hạn chiều rộng board
     const screenWidth = window.innerWidth;
@@ -806,3 +808,19 @@ document.addEventListener("click", (e) => {
     }
 });
 
+window.addEventListener("resize", () => {
+    if (!isGameRunning) return;
+
+    const totalCards = totalPairs * 2;
+    const cols = Math.ceil(Math.sqrt(totalCards));
+    const finalCols = Math.min(cols, 6);
+
+    const screenWidth = window.innerWidth;
+    const maxBoardWidth = screenWidth * 0.9;
+
+    let cardSize = Math.min(100, maxBoardWidth / finalCols);
+    cardSize = Math.max(60, cardSize);
+
+    gameBoard.style.gridTemplateColumns = `repeat(${finalCols}, ${cardSize}px)`;
+    gameBoard.style.maxWidth = `${cardSize * finalCols}px`;
+});
