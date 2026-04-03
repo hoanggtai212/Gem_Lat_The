@@ -98,15 +98,13 @@ function renderTopics() {
     });
 }
 
-function showCombo() {
+function showCombo(multiplier) {
     const comboText = document.getElementById("combo-text");
 
-    if (combo < 2) return; // chỉ hiện từ combo x2
-
-    comboText.innerText = `COMBO x${combo} 🔥`;
+    comboText.innerText = `x${multiplier} 🔥`;
 
     comboText.classList.remove("combo-show");
-    void comboText.offsetWidth; // reset animation
+    void comboText.offsetWidth;
     comboText.classList.add("combo-show");
 
     setTimeout(() => {
@@ -289,10 +287,9 @@ function updateUI() {
 
 function updateScore(delta) {
     score += delta;
-    if (score > 100) score = 100;
     if (score <= 0) {
         score = 0;
-        scoreVal.innerText = score;
+        scoreVal.innerText = score.toLocaleString();
         gameOver("no-score"); // Fail if score is 0
         return;
     }
@@ -415,18 +412,21 @@ function checkMatch() {
             playSFX(sfxMoney);
 
             // ✅ COMBO LOGIC
-            combo++; // tăng combo
-            showCombo();
-            maxCombo = Math.max(maxCombo, combo);
+            combo++;
 
             let baseScore = 5;
+            let multiplier = 1;
 
-            // combo x1, x2, x3...
-            let multiplier = combo; 
+            // chỉ từ lần 2 mới nhân
+            if (combo >= 2) {
+                multiplier = combo; // x2, x3, x4...
+                showCombo(multiplier);
+            }
 
             let bonus = baseScore * multiplier;
-
             updateScore(bonus);
+
+            maxCombo = Math.max(maxCombo, combo);
 
             console.log("Combo:", combo, "x" + multiplier);
 
@@ -447,7 +447,7 @@ function checkMatch() {
             const penalty = currentLevel >= 2 ? -10 : -5;
             updateScore(penalty);
 
-            combo = 0; // ❗ chỉ reset khi sai
+            combo = 0; // ❗ reset combo khi sai
 
             flippedCards = [];
             consecutiveMistakes++;
