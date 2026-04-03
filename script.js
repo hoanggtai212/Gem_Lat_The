@@ -732,11 +732,10 @@ if (volumeSlider) {
 function toggleVolumeControl() {
     const box = document.getElementById("volume-box");
 
-    if (box.style.display === "none") {
-        box.style.display = "block";
-    } else {
-        box.style.display = "none";
-    }
+    // đóng playlist nếu đang mở
+    showFrame("settings-frame");
+
+    box.classList.toggle("show");
 }
 
 // 🔊 thêm âm thanh click cho toàn bộ button
@@ -746,7 +745,3 @@ document.querySelectorAll(".btn").forEach(btn => {
     });
 });
 
-function toggleVolumeControl() {
-    const box = document.getElementById("volume-box");
-    box.classList.toggle("show");
-}
