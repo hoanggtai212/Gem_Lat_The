@@ -214,10 +214,23 @@ function startGame(level) {
     
     // Căn giữa
     gameBoard.style.justifyContent = "center";
+    gameBoard.style.alignContent = "center";
     gameBoard.style.justifyItems = "center";
 
     // Giới hạn chiều rộng board
-    gameBoard.style.maxWidth = `${finalCols * 120}px`;
+    const screenWidth = window.innerWidth;
+
+    // padding 2 bên
+    const maxBoardWidth = screenWidth * 0.9;
+
+    // size card tự động
+    let cardSize = Math.min(100, maxBoardWidth / finalCols);
+
+    // clamp cho mobile
+    cardSize = Math.max(60, cardSize);
+
+    gameBoard.style.gridTemplateColumns = `repeat(${finalCols}, ${cardSize}px)`;
+    gameBoard.style.maxWidth = `${cardSize * finalCols}px`;
     gameBoard.style.margin = "0 auto";
     
     // Start Countdown
