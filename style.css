@@ -71,16 +71,17 @@ body {
 }
 
 .game-title {
-    font-family: 'Dancing Script', cursive;
-    font-size: 5rem;
-    /* Màu chính dễ nhìn hơn */
-    color: #ff1493;
-    /* Glow nhẹ cho hợp theme */
-    text-shadow: 
-        0 2px 6px rgba(255,255,255,0.6),
-        0 4px 12px rgba(255,20,147,0.4);
-    background: linear-gradient(45deg, #ff9ecb, #ff69b4, #ffb6c1);
+    font-family: 'Montserrat', sans-serif; /* 👈 đổi font */
+    font-size: 4.5rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: linear-gradient(45deg, #ff69b4, #ff1493, #ff85c1);
     -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 
+        0 3px 8px rgba(255,255,255,0.6),
+        0 6px 18px rgba(255,20,147,0.5);
     margin-bottom: 2rem;
     animation: titleFloat 3s ease-in-out infinite;
 }
