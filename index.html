@@ -34,6 +34,9 @@
         Back
       </button>
     </div>
+
+    
+    
     <div class="options-frame" id="settings-frame" style="display: none">
       <h2>Settings</h2>
       <button class="btn" id="topic-btn" onclick="showFrame('topic-frame')">
@@ -51,6 +54,18 @@
         Back
       </button>
     </div>
+
+    <div class="options-frame" id="volume-frame" style="display: none">
+  <h2>Volume</h2>
+  <div style="width:100%; text-align:center;">
+    <input type="range" id="volume-slider" min="0" max="100" value="50">
+    <div id="volume-value">50%</div>
+  </div>
+  <button class="btn back-btn" onclick="showFrame('settings-frame')">
+    Back
+  </button>
+</div>
+    
     <div class="options-frame" id="playlist-frame" style="display: none">
       <h2>Select Song</h2>
       <div class="topic-list" id="playlist-container"></div>
@@ -58,6 +73,7 @@
         Back
       </button>
     </div>
+    
     <div class="options-frame" id="topic-frame" style="display: none">
       <h2>Select Topic</h2>
       <div class="topic-list" id="topic-container"></div>
@@ -110,19 +126,6 @@
     <button class="btn" id="pause-btn" onclick="pauseGame()" style="margin-top: 20px">
       Pause Game
     </button>
-
-    <div class="options-frame" id="volume-frame" style="display: none">
-  <h2>Volume</h2>
-
-  <div style="width:100%; text-align:center;">
-    <input type="range" id="volume-slider" min="0" max="100" value="50">
-    <div id="volume-value">50%</div>
-  </div>
-
-  <button class="btn back-btn" onclick="showFrame('settings-frame')">
-    Back
-  </button>
-</div>
     
     <div class="countdown-overlay" id="countdown-overlay">
       <div id="countdown-text">3</div>
