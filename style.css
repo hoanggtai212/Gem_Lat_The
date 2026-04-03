@@ -120,7 +120,7 @@ body {
 
 .options-frame h2 {
     font-family: 'Montserrat', sans-serif; /* giống list nhạc */
-    font-size: 2rem;
+    font-size: 3rem;
     font-weight: 700;
     color: #ff1493;
     text-transform: uppercase;
@@ -135,11 +135,17 @@ body {
 .options-frame h2::after {
     content: "";
     display: block;
-    width: 60%;
-    height: 3px;
+    width: 70%;
+    height: 4px;
     margin: 8px auto 0;
     background: linear-gradient(90deg, #ff69b4, transparent);
     border-radius: 10px;
+}
+
+@media (max-width: 600px) {
+    .options-frame h2 {
+        font-size: 2.2rem;
+    }
 }
 
 .btn {
