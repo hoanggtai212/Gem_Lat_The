@@ -59,6 +59,15 @@ let isPaused = false;
 let consecutiveMistakes = 0;
 
 window.onload = () => {
+    // 🔥 LOAD SETTING
+    const savedVolume = localStorage.getItem("game_volume");
+    const savedTopic = localStorage.getItem("game_topic");
+    if (savedVolume !== null) {
+        masterVolume = parseFloat(savedVolume);
+    }
+    if (savedTopic) {
+        currentTopic = savedTopic;
+    }
     renderTopics();
     renderPlaylist();
     volumeSlider.value = masterVolume * 100;
@@ -124,6 +133,7 @@ function selectTopic(topicName) {
 
 function saveTopic(newTopic) {
     currentTopic = newTopic;
+    localStorage.setItem("game_topic", newTopic); // ✅ lưu
     showToast();
     showFrame("main-options");
     // Reset button for next entry
@@ -731,6 +741,8 @@ if (volumeSlider) {
     volumeSlider.addEventListener("input", () => {
         const vol = volumeSlider.value / 100;
         masterVolume = vol;
+
+        localStorage.setItem("game_volume", vol); // ✅ lưu
         
         // update số %
         if (volumeValue) {
