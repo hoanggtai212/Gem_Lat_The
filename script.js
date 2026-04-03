@@ -198,43 +198,26 @@ function startGame(level) {
     setupGame(level);
 
     const totalCards = totalPairs * 2;
-
-    let finalCols;
-
-    if (totalCards === 6) {
-        finalCols = 3; // fix cứng 3x2 cho level 3
-    } else {
-        const cols = Math.ceil(Math.sqrt(totalCards));
-        const maxCols = 6;
-        finalCols = Math.min(cols, maxCols);
+    let cols = Math.ceil(Math.sqrt(totalCards));
+    let rows = Math.ceil(totalCards / cols);
+    // 🔥 FIX lệch hàng cuối
+    if (totalCards % cols === 1) {
+    cols--;
     }
+    let finalCols = cols;
 
-    // Set grid
-    gameBoard.style.gridTemplateColumns = `repeat(${finalCols}, 1fr)`;
-    
-    // Căn giữa
+    gameBoard.style.display = "grid";
+    gameBoard.style.gridTemplateColumns = `repeat(${finalCols}, ${cardSize}px)`;
     gameBoard.style.justifyContent = "center";
     gameBoard.style.alignContent = "center";
     gameBoard.style.justifyItems = "center";
-    gameBoard.style.display = "grid";
-    gameBoard.style.placeContent = "center";
+    gameBoard.style.margin = "0 auto";
+    gameBoard.style.maxWidth = `${cardSize * finalCols}px`;
 
-    // Giới hạn chiều rộng board
     const screenWidth = window.innerWidth;
-
-    // padding 2 bên
-    const maxBoardWidth = screenWidth * 0.9;
-
-    // size card tự động
-    let cardSize = Math.min(100, maxBoardWidth / finalCols);
-
-    // clamp cho mobile
-    cardSize = Math.max(60, cardSize);
-
     gameBoard.style.gridTemplateColumns = `repeat(${finalCols}, ${cardSize}px)`;
     gameBoard.style.maxWidth = `${cardSize * finalCols}px`;
     gameBoard.style.margin = "0 auto";
-    
     // Start Countdown
     runCountdown(() => {
         isGameRunning = true;
@@ -810,17 +793,20 @@ document.addEventListener("click", (e) => {
 
 window.addEventListener("resize", () => {
     if (!isGameRunning) return;
-
     const totalCards = totalPairs * 2;
-    const cols = Math.ceil(Math.sqrt(totalCards));
-    const finalCols = Math.min(cols, 6);
+    let cols = Math.ceil(Math.sqrt(totalCards));
+    let rows = Math.ceil(totalCards / cols);
 
+    if (totalCards % cols === 1) {
+        cols--;
+    }
     const screenWidth = window.innerWidth;
-    const maxBoardWidth = screenWidth * 0.9;
-
-    let cardSize = Math.min(100, maxBoardWidth / finalCols);
-    cardSize = Math.max(60, cardSize);
-
-    gameBoard.style.gridTemplateColumns = `repeat(${finalCols}, ${cardSize}px)`;
-    gameBoard.style.maxWidth = `${cardSize * finalCols}px`;
+    const screenHeight = window.innerHeight;
+    let cardSize = Math.min(
+        (screenWidth * 0.9) / cols,
+        (screenHeight * 0.6) / rows
+    );
+    cardSize = Math.max(50, Math.min(100, cardSize));
+    gameBoard.style.gridTemplateColumns = `repeat(${cols}, ${cardSize}px)`;
+    gameBoard.style.maxWidth = `${cardSize * cols}px`;
 });
