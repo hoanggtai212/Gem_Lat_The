@@ -144,6 +144,10 @@ function startGame(level) {
     currentLevel = level;
     levelVal.innerText = level;
 
+    if (!isMusicPlaying) {
+    playTrack(currentTrackIndex);
+    }
+    
     // Reset Stats
     score = 100;
     timeLeft = level === 1 ? 120 : 60;
