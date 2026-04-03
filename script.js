@@ -746,4 +746,7 @@ document.querySelectorAll(".btn").forEach(btn => {
     });
 });
 
-
+function toggleVolumeControl() {
+    const box = document.getElementById("volume-box");
+    box.classList.toggle("show");
+}
