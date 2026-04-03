@@ -59,7 +59,8 @@ let consecutiveMistakes = 0;
 window.onload = () => {
     renderTopics();
     renderPlaylist();
-
+    volumeSlider.value = masterVolume * 100;
+    volumeValue.innerText = volumeSlider.value + "%";
     // SET VOLUME BAN ĐẦU
     const allAudio = [
         music, sfxWin, sfxFail, sfxPop, sfxSwap, sfxTing, sfxMoney
