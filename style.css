@@ -135,7 +135,7 @@ body {
 .options-frame h2::after {
     content: "";
     display: block;
-    width: 70%;
+    width: 65%;
     height: 4px;
     margin: 8px auto 0;
     background: linear-gradient(90deg, #ff69b4, transparent);
