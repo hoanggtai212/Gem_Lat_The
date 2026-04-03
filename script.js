@@ -98,6 +98,22 @@ function renderTopics() {
     });
 }
 
+function showCombo() {
+    const comboText = document.getElementById("combo-text");
+
+    if (combo < 2) return; // chỉ hiện từ combo x2
+
+    comboText.innerText = `COMBO x${combo} 🔥`;
+
+    comboText.classList.remove("combo-show");
+    void comboText.offsetWidth; // reset animation
+    comboText.classList.add("combo-show");
+
+    setTimeout(() => {
+        comboText.classList.remove("combo-show");
+    }, 800);
+}
+
 function showFrame(frameId) {
     const frames = [
         "main-options",
