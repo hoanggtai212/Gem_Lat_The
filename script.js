@@ -416,6 +416,7 @@ function checkMatch() {
 
             // ✅ COMBO LOGIC
             combo++; // tăng combo
+            showCombo();
             maxCombo = Math.max(maxCombo, combo);
 
             let baseScore = 5;
