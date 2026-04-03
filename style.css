@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap');
 
 :root {
     --bg-dark: #8B0000;
@@ -71,17 +71,18 @@ body {
 }
 
 .game-title {
-    font-family: 'Montserrat', sans-serif; /* 👈 đổi font */
+    font-family: 'Poppins', sans-serif; /* 👈 font game */
     font-size: 4.5rem;
     font-weight: 700;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
+    color: #ff1493;
     text-transform: uppercase;
     background: linear-gradient(45deg, #ff69b4, #ff1493, #ff85c1);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-shadow: 
-        0 3px 8px rgba(255,255,255,0.6),
-        0 6px 18px rgba(255,20,147,0.5);
+        0 3px 10px rgba(255,255,255,0.7),
+        0 5px 20px rgba(255,105,180,0.6);
     margin-bottom: 2rem;
     animation: titleFloat 3s ease-in-out infinite;
 }
