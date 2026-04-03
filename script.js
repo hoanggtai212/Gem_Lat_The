@@ -731,10 +731,9 @@ if (volumeSlider) {
     });
 }
 
-// 🔊 thêm âm thanh click cho toàn bộ button
-document.querySelectorAll(".btn").forEach(btn => {
-    btn.addEventListener("click", () => {
+document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("btn")) {
         playSFX(sfxPop);
-    });
+    }
 });
 
