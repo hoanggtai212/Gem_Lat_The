@@ -119,6 +119,19 @@
       Pause Game
     </button>
 
+    <div class="options-frame" id="volume-frame" style="display: none">
+  <h2>Volume</h2>
+
+  <div style="width:100%; text-align:center;">
+    <input type="range" id="volume-slider" min="0" max="100" value="50">
+    <div id="volume-value">50%</div>
+  </div>
+
+  <button class="btn back-btn" onclick="showFrame('settings-frame')">
+    Back
+  </button>
+</div>
+    
     <div class="countdown-overlay" id="countdown-overlay">
       <div id="countdown-text">3</div>
     </div>
