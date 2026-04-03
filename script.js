@@ -396,48 +396,58 @@ function checkMatch() {
         setTimeout(() => {
             card1.classList.add("matched");
             card2.classList.add("matched");
-            playSFX(sfxMoney); // Play money sound on match
-            
-            combo++;
+            playSFX(sfxMoney);
+
+            // ✅ COMBO LOGIC
+            combo++; // tăng combo
             maxCombo = Math.max(maxCombo, combo);
-            // tính điểm theo combo
-            let bonus = 5 + (combo * 2); // combo càng cao càng nhiều điểm
+
+            let baseScore = 5;
+
+            // combo x1, x2, x3...
+            let multiplier = combo; 
+
+            let bonus = baseScore * multiplier;
+
             updateScore(bonus);
-            updateScore(penalty);
-            flippedCards = [];
-            consecutiveMistakes++;
-            combo = 0; // reset combo
-            console.log("Combo:", combo);
-            
+
+            console.log("Combo:", combo, "x" + multiplier);
+
             matchedPairs++;
-            consecutiveMistakes = 0; // Reset on match
+            consecutiveMistakes = 0;
             flippedCards = [];
             isTransitioning = false;
 
             if (matchedPairs === totalPairs) {
-                gameOver("complete"); // Victory
+                gameOver("complete");
             }
         }, 600);
     } else {
         setTimeout(() => {
             card1.classList.remove("flipped");
             card2.classList.remove("flipped");
+
             const penalty = currentLevel >= 2 ? -10 : -5;
             updateScore(penalty);
+
+            combo = 0; // ❗ chỉ reset khi sai
+
             flippedCards = [];
             consecutiveMistakes++;
-            // Special Mechanic Level 3: Shuffle remaining cards on 3 consecutive mismatches
+
             const limit = Math.max(5 - Math.floor(currentLevel / 5), 3);
             if (consecutiveMistakes >= limit) {
                 const cards = document.querySelectorAll(".card:not(.matched)");
-            // RUNG TRƯỚC
+
                 cards.forEach(card => card.classList.add("shake"));
                 setTimeout(() => {
                     cards.forEach(card => card.classList.remove("shake"));
-                    shuffleRemainingCards(); // rồi mới shuffle
+                    shuffleRemainingCards();
                 }, 300);
+
                 consecutiveMistakes = 0;
             }
+
             isTransitioning = false;
         }, 1000);
     }
