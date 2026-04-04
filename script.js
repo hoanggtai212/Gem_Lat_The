@@ -55,6 +55,7 @@ let totalInitialTime = 60;
 let gameTimer = null;
 let backgroundInterval = null;
 let isGameRunning = false;
+let canClick = false;
 let isPaused = false;
 let consecutiveMistakes = 0;
 
@@ -185,6 +186,7 @@ function startTimer() {
         if (isPaused) return;
         timeLeft--;
         updateUI();
+        timerBar.style.width = "100%";
         if (timeLeft <= 0) {
             gameOver("timeout");
         }
@@ -221,6 +223,7 @@ function runCountdown(callback) {
 
 function startGame(level) {
     currentLevel = level;
+    canClick = false;
     levelVal.innerText = level;
 
     if (!isMusicPlaying) {
@@ -259,6 +262,7 @@ gameBoard.style.margin = "0 auto";
 // Start Countdown
 runCountdown(() => {
     isGameRunning = true;
+    canClick = true;
     startTimer();
 });
 
@@ -344,7 +348,7 @@ function getIndices(total, count) {
 
 function flipCard(card) {
     if (
-        !isGameRunning ||
+        !canClick ||
         isPaused ||
         isTransitioning ||
         flippedCards.includes(card) ||
