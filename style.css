@@ -10,6 +10,14 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+    touch-action: manipulation;
+    overscroll-behavior: none;
 }
 
 body {
@@ -19,6 +27,11 @@ body {
       linear-gradient(135deg, #fff0f5, #ffe4ec, #ffd6e7);
 
     background-attachment: fixed;
+}
+
+.card:active,
+.btn:active {
+    transform: scale(1);
 }
 
 .modal-overlay {
@@ -931,4 +944,11 @@ body {
     .modal-title {
         font-size: 2.5rem;
     }
+}
+
+.options-frame,
+.card,
+.btn,
+.game-board {
+    touch-action: manipulation;
 }
