@@ -879,4 +879,8 @@ function updateBoardLayout() {
     gameBoard.style.maxWidth = `${cardSize * cols}px`;
 }
 
-
+document.querySelectorAll(".btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+        playSFX(sfxPop);
+    });
+});
