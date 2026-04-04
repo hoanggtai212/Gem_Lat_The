@@ -46,12 +46,10 @@ setVolume(v) {
         if (v <= 0.0001) {
             audio.muted = true;
             audio.pause();
-            audio.currentTime = 0;
         } else {
             audio.muted = false;
         }
     });
-
     syncVolumeUI();
 }
 
