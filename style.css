@@ -229,7 +229,7 @@ body {
 
 .btn {
     position: relative;
-    z-index: 1000;
+    z-index: 100;
     font-family: 'Montserrat', sans-serif;
     font-size: 1.1rem;
     font-weight: 700;
@@ -812,8 +812,8 @@ body {
 .card {
     aspect-ratio: 2/3;
     width: 100%;
-    max-width: 90px; /* 🔥 giới hạn card */
-    min-width: 50px;
+    /* 🔥 QUAN TRỌNG */
+    max-width: clamp(50px, 12vw, 90px);
 }
 
 .card.flipped {
@@ -927,10 +927,11 @@ body {
         margin-top: 5px;
     }
 
-    .game-board {
-        grid-gap: 8px;
-        padding: 10px;
-    }
+.game-board {
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
     
     .card {
         max-height: 20vh;
