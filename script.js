@@ -46,7 +46,6 @@ setVolume(v) {
         audio.volume = v;
         if (v <= 0.0001) {
             audio.muted = true;
-            audio.pause();
         } else {
             audio.muted = false;
         }
@@ -54,8 +53,6 @@ setVolume(v) {
     syncVolumeUI();
 },
 
-
-    
     play(name) {
         const sound = this.sounds[name];
         if (!sound) return;
@@ -68,11 +65,10 @@ setVolume(v) {
 playMusic() {
     const music = this.sounds.music;
 
-    if (this.masterVolume <= 0) return;
-
     music.volume = this.masterVolume;
-    music.muted = false;
-    music.play();
+    music.muted = this.masterVolume <= 0;
+
+    music.play().catch(()=>{});
 },
 
     stopMusic() {
