@@ -684,19 +684,14 @@ function spawnBackgroundBatch() {
 }
 
 function playTrack(index) {
-    if (currentTrackIndex === index) {
-        if (isMusicPlaying) {
-            music.pause();
-            isMusicPlaying = false;
-        } else {
-            music.play().then(() => {
-                isMusicPlaying = true;
-                updateMusicButtonUI();
-            }).catch(e => console.log(e));
-        }
+if (currentTrackIndex === index) {
+    // ✅ nếu đang pause thì play lại thôi
+    music.play().then(() => {
+        isMusicPlaying = true;
         updateMusicButtonUI();
-        return;
-    }
+    }).catch(()=>{});
+    return;
+}
 
     currentTrackIndex = index;
     music.src = playlist[index];
