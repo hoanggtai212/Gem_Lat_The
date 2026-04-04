@@ -41,10 +41,15 @@ const SoundManager = {
 setVolume(v) {
     this.masterVolume = v;
     Object.values(this.sounds).forEach(audio => {
+        if (!audio) return;
         audio.volume = v;
+        audio.muted = (v <= 0);
+        if (v <= 0) {
+            audio.pause();
+        }
     });
-    syncVolumeUI(); // 🔥 QUAN TRỌNG
-},
+    syncVolumeUI();
+}
 
     play(name) {
         const sound = this.sounds[name];
