@@ -38,13 +38,13 @@ const SoundManager = {
         };
     },
 
-    setVolume(v) {
-        this.masterVolume = v;
-
-        Object.values(this.sounds).forEach(audio => {
-            audio.volume = v;
-        });
-    },
+setVolume(v) {
+    this.masterVolume = v;
+    Object.values(this.sounds).forEach(audio => {
+        audio.volume = v;
+    });
+    syncVolumeUI(); // 🔥 QUAN TRỌNG
+}
 
     play(name) {
         const sound = this.sounds[name];
@@ -106,9 +106,10 @@ window.onload = () => {
     const savedVolume = localStorage.getItem("game_volume");
     const savedTopic = localStorage.getItem("game_topic");
 
-    if (savedVolume !== null) {
-        SoundManager.masterVolume = parseFloat(savedVolume); // ✅ FIX
-    }
+if (savedVolume !== null) {
+    SoundManager.setVolume(parseFloat(savedVolume));
+}
+syncVolumeUI();
 
     if (savedTopic) {
         currentTopic = savedTopic;
@@ -119,8 +120,6 @@ window.onload = () => {
 
     volumeSlider.value = SoundManager.masterVolume * 100;
     volumeValue.innerText = volumeSlider.value + "%";
-
-    applyVolume(); // 🔥 quan trọng: sync tất cả audio
 };
 
 function renderTopics() {
@@ -678,13 +677,6 @@ function playTrack(index) {
 
     currentTrackIndex = index;
     music.src = playlist[index];
-    music.volume = SoundManager.masterVolume;
-sfxWin.volume = SoundManager.masterVolume;
-sfxFail.volume = SoundManager.masterVolume;
-sfxPop.volume = SoundManager.masterVolume;
-sfxSwap.volume = SoundManager.masterVolume;
-sfxTing.volume = SoundManager.masterVolume;
-sfxMoney.volume = SoundManager.masterVolume;
     music
         .play()
         .then(() => {
@@ -774,18 +766,16 @@ const volumeValue = document.getElementById("volume-value");
 
 if (volumeSlider) {
 volumeSlider.addEventListener("input", (e) => {
-    const v = e.target.value / 100;
+    const v = Number(e.target.value) / 100;
     SoundManager.setVolume(v);
-    applyVolume();
-    // 🔥 sync UI từ source thật
-    const realValue = Math.round(SoundManager.masterVolume * 100);
-    volumeValue.innerText = realValue + "%";
+    localStorage.setItem("game_volume", v);
 });
 }
 
 function syncVolumeUI() {
-    volumeSlider.value = SoundManager.masterVolume * 100;
-    volumeValue.innerText = Math.round(SoundManager.masterVolume * 100) + "%";
+    const v = Math.round(SoundManager.masterVolume * 100);
+    volumeSlider.value = v;
+    volumeValue.innerText = v + "%";
 }
 
 document.addEventListener("click", (e) => {
