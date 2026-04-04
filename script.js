@@ -114,10 +114,10 @@ let isPaused = false;
 let consecutiveMistakes = 0;
 let volumeSlider;
 let volumeValue;
+const savedVolume = localStorage.getItem("game_volume");
+const savedTopic = localStorage.getItem("game_topic");
 
 window.onload = () => {
-    volumeSlider = document.getElementById("volume-slider");
-    volumeValue = document.getElementById("volume-value");
     if (savedVolume !== null) {
         SoundManager.setVolume(parseFloat(savedVolume));
     }
@@ -236,7 +236,6 @@ function startTimer() {
         if (isPaused) return;
         timeLeft--;
         updateUI();
-        timerBar.style.width = "100%";
         if (timeLeft <= 0) {
             gameOver("timeout");
         }
@@ -794,14 +793,13 @@ function syncVolumeUI() {
 }
 
 let lastClick = 0;
-document.addEventListener("click", (e) => {
-    const btn = e.target.closest(".btn");
-    if (!btn) return;
-    const now = Date.now();
-    if (now - lastClick < 80) return;
-    lastClick = now;
-    playSFX(sfxPop);
-});
+document.addEventListener("click", () => {
+    if (!isMusicPlaying) {
+        music.play().then(() => {
+            music.pause();
+        }).catch(()=>{});
+    }
+}, { once: true });
 
 function applyVolume() {
     const v = SoundManager.masterVolume;
