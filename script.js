@@ -118,6 +118,7 @@ const savedVolume = localStorage.getItem("game_volume");
 const savedTopic = localStorage.getItem("game_topic");
 
 window.onload = () => {
+    SoundManager.init();
     if (savedVolume !== null) {
         SoundManager.setVolume(parseFloat(savedVolume));
     }
@@ -862,4 +863,4 @@ function updateBoardLayout() {
     gameBoard.style.maxWidth = `${cardSize * cols}px`;
 }
 
-SoundManager.init();
+
