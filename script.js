@@ -854,11 +854,11 @@ function updateBoardLayout() {
     const totalCards = totalPairs * 2;
     let cols;
     if (window.innerWidth < 600) {
-        cols = Math.ceil(Math.sqrt(totalCards)); // mobile
+        cols = Math.ceil(Math.sqrt(totalCards * 1.5)); // 🔥 tăng cột mobile
     } else {
-        cols = Math.ceil(Math.sqrt(totalCards * 1.2)); // desktop rộng hơn
+        cols = Math.ceil(Math.sqrt(totalCards * 2)); // 🔥 desktop nhiều cột hơn
     }
-    gameBoard.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+    gameBoard.style.gridTemplateColumns = `repeat(${cols}, auto)`; // 🔥 đổi 1fr → auto
 }
 
 document.addEventListener("click", (e) => {
