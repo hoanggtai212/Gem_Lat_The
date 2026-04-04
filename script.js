@@ -852,16 +852,12 @@ function updateScore(delta) {
 
 function updateBoardLayout() {
     const totalCards = totalPairs * 2;
-    const isLandscape = window.innerWidth > window.innerHeight;
     let cols;
-    if (isLandscape) {
-        // 📱 ngang → nhiều cột hơn
-        cols = Math.ceil(Math.sqrt(totalCards * 1.5));
+    if (window.innerWidth < 600) {
+        cols = Math.ceil(Math.sqrt(totalCards)); // mobile
     } else {
-        // 📱 dọc → ít cột lại cho đỡ nhỏ
-        cols = Math.ceil(Math.sqrt(totalCards));
+        cols = Math.ceil(Math.sqrt(totalCards * 1.2)); // desktop rộng hơn
     }
-    const rows = Math.ceil(totalCards / cols);
     gameBoard.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
 }
 
