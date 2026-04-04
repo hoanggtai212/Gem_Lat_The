@@ -51,8 +51,10 @@ setVolume(v) {
         }
     });
     syncVolumeUI();
-}
+},
 
+
+    
     play(name) {
         const sound = this.sounds[name];
         if (!sound) return;
@@ -112,8 +114,6 @@ let isGameRunning = false;
 let canClick = false;
 let isPaused = false;
 let consecutiveMistakes = 0;
-let volumeSlider;
-let volumeValue;
 const savedVolume = localStorage.getItem("game_volume");
 const savedTopic = localStorage.getItem("game_topic");
 
@@ -497,6 +497,9 @@ function shuffleRemainingCards() {
         return { left: rect.left, top: rect.top };
     });
 
+    cards.sort(() => Math.random() - 0.5);
+    cards.forEach(card => gameBoard.appendChild(card));
+    
     // Record new positions after DOM update
     const lastPositions = cards.map((card) => {
         const rect = card.getBoundingClientRect();
