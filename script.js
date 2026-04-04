@@ -103,27 +103,24 @@ let isPaused = false;
 let consecutiveMistakes = 0;
 
 window.onload = () => {
-    // 🔥 LOAD SETTING
     const savedVolume = localStorage.getItem("game_volume");
     const savedTopic = localStorage.getItem("game_topic");
+
     if (savedVolume !== null) {
-        masterVolume = parseFloat(savedVolume);
+        SoundManager.masterVolume = parseFloat(savedVolume); // ✅ FIX
     }
+
     if (savedTopic) {
         currentTopic = savedTopic;
     }
+
     renderTopics();
     renderPlaylist();
-    volumeSlider.value = masterVolume * 100;
-    volumeValue.innerText = volumeSlider.value + "%";
-    // SET VOLUME BAN ĐẦU
-    const allAudio = [
-        music, sfxWin, sfxFail, sfxPop, sfxSwap, sfxTing, sfxMoney
-    ];
 
-    allAudio.forEach(a => {
-        if (a) a.volume = masterVolume;
-    });
+    volumeSlider.value = SoundManager.masterVolume * 100;
+    volumeValue.innerText = volumeSlider.value + "%";
+
+    applyVolume(); // 🔥 quan trọng: sync tất cả audio
 };
 
 function renderTopics() {
@@ -776,13 +773,13 @@ const volumeSlider = document.getElementById("volume-slider");
 const volumeValue = document.getElementById("volume-value");
 
 if (volumeSlider) {
-    volumeSlider.addEventListener("input", (e) => {
+volumeSlider.addEventListener("input", (e) => {
     const v = e.target.value / 100;
-
-    volumeValue.innerText = e.target.value + "%";
 
     SoundManager.setVolume(v);
     applyVolume();
+
+    localStorage.setItem("game_volume", v); // 🔥 thêm dòng này
 });
 }
 
@@ -791,11 +788,6 @@ document.addEventListener("click", (e) => {
         playSFX(sfxPop);
     }
 });
-
-document.addEventListener("click", () => {
-    music.volume = SoundManager.masterVolume;
-    music.play().catch(() => {});
-}, { once: true });
 
 function applyVolume() {
     const v = SoundManager.masterVolume;
