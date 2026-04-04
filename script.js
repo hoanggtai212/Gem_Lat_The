@@ -43,9 +43,12 @@ setVolume(v) {
     Object.values(this.sounds).forEach(audio => {
         if (!audio) return;
         audio.volume = v;
-        audio.muted = (v <= 0);
         if (v <= 0) {
+            audio.muted = true;
             audio.pause();
+            audio.currentTime = 0;
+        } else {
+            audio.muted = false;
         }
     });
     syncVolumeUI();
@@ -60,11 +63,15 @@ setVolume(v) {
         sound.play();
     },
 
-    playMusic() {
-        const music = this.sounds.music;
-        music.volume = this.masterVolume;
-        music.play();
-    },
+playMusic() {
+    const music = this.sounds.music;
+
+    if (this.masterVolume <= 0) return;
+
+    music.volume = this.masterVolume;
+    music.muted = false;
+    music.play();
+},
 
     stopMusic() {
         this.sounds.music.pause();
@@ -756,15 +763,20 @@ music.addEventListener("ended", () => {
 
 function playSFX(audio) {
     if (!audio) return;
-    audio.pause();          // reset
+    // 🔥 CHẶN NGAY KHI MUTE
+    if (SoundManager.masterVolume <= 0) return;
+    audio.pause();
     audio.currentTime = 0;
     audio.volume = SoundManager.masterVolume;
-    audio.play().catch(() => {});
+    window.addEventListener("touchstart", () => {
+    Object.values(SoundManager.sounds).forEach(a => {
+        if (a) {
+            a.load();
+            a.volume = SoundManager.masterVolume;
+        }
+    });
+}, { once: true });
 }
-
-// document.addEventListener("click", () => {
-//     playSFX(sfxPop);
-// });
 
 const volumeSlider = document.getElementById("volume-slider");
 const volumeValue = document.getElementById("volume-value");
@@ -779,14 +791,17 @@ volumeSlider.addEventListener("input", (e) => {
 
 function syncVolumeUI() {
     const v = Math.round(SoundManager.masterVolume * 100);
-    volumeSlider.value = v;
-    volumeValue.innerText = v + "%";
+    if (volumeSlider) volumeSlider.value = v;
+    if (volumeValue) volumeValue.innerText = v + "%";
 }
 
+let lastClick = 0;
 document.addEventListener("click", (e) => {
-    if (e.target.classList.contains("btn")) {
-        playSFX(sfxPop);
-    }
+    if (!e.target.classList.contains("btn")) return;
+    const now = Date.now();
+    if (now - lastClick < 80) return; // debounce
+    lastClick = now;
+    playSFX(sfxPop);
 });
 
 function applyVolume() {
