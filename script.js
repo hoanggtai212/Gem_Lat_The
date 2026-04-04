@@ -43,7 +43,7 @@ setVolume(v) {
     Object.values(this.sounds).forEach(audio => {
         if (!audio) return;
         audio.volume = v;
-        if (v <= 0) {
+        if (v <= 0.0001) {
             audio.muted = true;
             audio.pause();
             audio.currentTime = 0;
@@ -51,6 +51,7 @@ setVolume(v) {
             audio.muted = false;
         }
     });
+
     syncVolumeUI();
 }
 
@@ -768,14 +769,17 @@ function playSFX(audio) {
     audio.pause();
     audio.currentTime = 0;
     audio.volume = SoundManager.masterVolume;
-    window.addEventListener("touchstart", () => {
-    Object.values(SoundManager.sounds).forEach(a => {
-        if (a) {
-            a.load();
-            a.volume = SoundManager.masterVolume;
-        }
-    });
-}, { once: true });
+function playSFX(audio) {
+    if (!audio) return;
+    if (SoundManager.masterVolume <= 0) return;
+
+    try {
+        audio.pause();
+        audio.currentTime = 0;
+        audio.volume = SoundManager.masterVolume;
+        audio.play();
+    } catch (e) {}
+}
 }
 
 const volumeSlider = document.getElementById("volume-slider");
@@ -786,20 +790,26 @@ volumeSlider.addEventListener("input", (e) => {
     const v = Number(e.target.value) / 100;
     SoundManager.setVolume(v);
     localStorage.setItem("game_volume", v);
+    syncVolumeUI(); // 🔥 thêm dòng này
 });
 }
 
 function syncVolumeUI() {
     const v = Math.round(SoundManager.masterVolume * 100);
-    if (volumeSlider) volumeSlider.value = v;
-    if (volumeValue) volumeValue.innerText = v + "%";
+    if (volumeSlider) {
+        volumeSlider.value = v;
+    }
+    if (volumeValue) {
+        volumeValue.innerText = v + "%";
+    }
 }
 
 let lastClick = 0;
 document.addEventListener("click", (e) => {
-    if (!e.target.classList.contains("btn")) return;
+    const btn = e.target.closest(".btn");
+    if (!btn) return;
     const now = Date.now();
-    if (now - lastClick < 80) return; // debounce
+    if (now - lastClick < 80) return;
     lastClick = now;
     playSFX(sfxPop);
 });
