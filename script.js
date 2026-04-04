@@ -775,12 +775,17 @@ const volumeValue = document.getElementById("volume-value");
 if (volumeSlider) {
 volumeSlider.addEventListener("input", (e) => {
     const v = e.target.value / 100;
-
     SoundManager.setVolume(v);
     applyVolume();
-
-    localStorage.setItem("game_volume", v); // 🔥 thêm dòng này
+    // 🔥 sync UI từ source thật
+    const realValue = Math.round(SoundManager.masterVolume * 100);
+    volumeValue.innerText = realValue + "%";
 });
+}
+
+function syncVolumeUI() {
+    volumeSlider.value = SoundManager.masterVolume * 100;
+    volumeValue.innerText = Math.round(SoundManager.masterVolume * 100) + "%";
 }
 
 document.addEventListener("click", (e) => {
