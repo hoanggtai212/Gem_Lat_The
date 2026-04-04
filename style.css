@@ -811,9 +811,8 @@ body {
 
 .card {
     aspect-ratio: 2/3;
-    width: 100%;
-    /* 🔥 QUAN TRỌNG */
-    max-width: clamp(50px, 12vw, 90px);
+    width: clamp(55px, 8vw, 80px); /* 🔥 giảm lại */
+    max-width: 80px;
 }
 
 .card.flipped {
@@ -931,10 +930,12 @@ body {
     overflow-y: auto;
     overflow-x: hidden;
     scroll-behavior: smooth;
+    justify-content: center;
+    justify-items: center;
 }
     
     .card {
-        max-height: 20vh;
+        width: clamp(45px, 14vw, 65px);
     }
 
     #countdown-text {
