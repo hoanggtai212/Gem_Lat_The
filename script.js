@@ -801,7 +801,9 @@ function syncVolumeUI() {
 }
 
 let lastClick = 0;
-document.addEventListener("click", () => {
+document.addEventListener("click", (e) => {
+    if (e.target.closest(".btn")) return; // 🔥 cho phép nút hoạt động
+
     if (!isMusicPlaying) {
         music.play().then(() => {
             music.pause();
