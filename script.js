@@ -255,7 +255,6 @@ gameBoard.style.justifyContent = "center";
 gameBoard.style.alignContent = "center";
 gameBoard.style.justifyItems = "center";
 gameBoard.style.margin = "0 auto";
-gameBoard.style.maxWidth = `${cardSize * finalCols}px`;
 
 // Start Countdown
 runCountdown(() => {
@@ -753,7 +752,9 @@ document.addEventListener("click", (e) => {
 });
 
 document.addEventListener("click", () => {
-    music.play().catch(() => {});
+    if (music.paused) {
+        music.play().catch(() => {});
+    }
 }, { once: true });
 
 function updateScore(delta) {
