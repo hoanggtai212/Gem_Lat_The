@@ -44,7 +44,7 @@ setVolume(v) {
         audio.volume = v;
     });
     syncVolumeUI(); // 🔥 QUAN TRỌNG
-}
+},
 
     play(name) {
         const sound = this.sounds[name];
