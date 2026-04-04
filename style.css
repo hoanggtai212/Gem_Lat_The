@@ -70,6 +70,8 @@ body {
     margin: 0 auto;
     padding: 20px;
     border-radius: 20px;
+    position: relative;
+    z-index: 10;
 }
 
 .wave-bg {
@@ -467,7 +469,7 @@ body {
     width: 100%;
     height: 100%;
     pointer-events: none;
-    z-index: 5;
+    z-index: 1;
     overflow: hidden;
 }
 
@@ -811,6 +813,7 @@ body {
 /* Ensure cards are visible after animation */
 .card {
     position: relative;
+    z-index: 20;
     aspect-ratio: 2/3;
     width: 100%;
     cursor: pointer;
