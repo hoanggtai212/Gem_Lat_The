@@ -166,6 +166,31 @@ function showToast() {
     }, 2000);
 }
 
+function updateUI() {
+    scoreVal.innerText = score;
+    const percentage = (timeLeft / totalInitialTime) * 100;
+    timerBar.style.width = percentage + "%";
+
+    // Change color based on time remaining
+    if (percentage < 25) {
+        timerBar.style.background = "linear-gradient(90deg, #ff4d4d, #ff0000)";
+    } else {
+        timerBar.style.background = "linear-gradient(90deg, #FFD700, #FFA500)";
+    }
+}
+
+function startTimer() {
+    if (gameTimer) clearInterval(gameTimer);
+    gameTimer = setInterval(() => {
+        if (isPaused) return;
+        timeLeft--;
+        updateUI();
+        if (timeLeft <= 0) {
+            gameOver("timeout");
+        }
+    }, 1000);
+}
+
 function startGame(level) {
     currentLevel = level;
     levelVal.innerText = level;
@@ -196,39 +221,49 @@ function startGame(level) {
 
     // Setup Board (Hidden cards initially)
     setupGame(level);
-
+    updateBoardLayout();
+    
     const totalCards = totalPairs * 2;
-    let cols = Math.ceil(Math.sqrt(totalCards));
-    let rows = Math.ceil(totalCards / cols);
-    // 🔥 FIX lệch hàng cuối
-    if (totalCards % cols === 1) {
+let cols = Math.ceil(Math.sqrt(totalCards));
+let rows = Math.ceil(totalCards / cols);
+
+// 🔥 FIX lệch hàng cuối
+if (totalCards % cols === 1) {
     cols--;
-    }
-    let finalCols = cols;
-
-    gameBoard.style.display = "grid";
-    gameBoard.style.gridTemplateColumns = `repeat(${finalCols}, ${cardSize}px)`;
-    gameBoard.style.justifyContent = "center";
-    gameBoard.style.alignContent = "center";
-    gameBoard.style.justifyItems = "center";
-    gameBoard.style.margin = "0 auto";
-    gameBoard.style.maxWidth = `${cardSize * finalCols}px`;
-
-    const screenWidth = window.innerWidth;
-    gameBoard.style.gridTemplateColumns = `repeat(${finalCols}, ${cardSize}px)`;
-    gameBoard.style.maxWidth = `${cardSize * finalCols}px`;
-    gameBoard.style.margin = "0 auto";
-    // Start Countdown
-    runCountdown(() => {
-        isGameRunning = true;
-        startTimer();
-    });
-
-    // Background
-    if (backgroundInterval) clearInterval(backgroundInterval);
-    spawnBackgroundBatch();
-    backgroundInterval = setInterval(spawnBackgroundBatch, 5000);
 }
+
+let finalCols = cols;
+
+// ✅ TÍNH SIZE CARD (QUAN TRỌNG)
+const screenWidth = window.innerWidth;
+const screenHeight = window.innerHeight;
+
+let cardSize = Math.min(
+    (screenWidth * 0.9) / finalCols,
+    (screenHeight * 0.6) / rows
+);
+
+cardSize = Math.max(50, Math.min(100, cardSize));
+
+// ✅ SET GRID (CHỈ 1 LẦN)
+gameBoard.style.display = "grid";
+gameBoard.style.gridTemplateColumns = `repeat(${finalCols}, ${cardSize}px)`;
+gameBoard.style.justifyContent = "center";
+gameBoard.style.alignContent = "center";
+gameBoard.style.justifyItems = "center";
+gameBoard.style.margin = "0 auto";
+gameBoard.style.maxWidth = `${cardSize * finalCols}px`;
+
+// Start Countdown
+runCountdown(() => {
+    isGameRunning = true;
+    startTimer();
+});
+
+// Background
+if (backgroundInterval) clearInterval(backgroundInterval);
+spawnBackgroundBatch();
+backgroundInterval = setInterval(spawnBackgroundBatch, 5000);
 
 function runCountdown(callback) {
     countdownOverlay.style.display = "flex";
@@ -256,31 +291,6 @@ function runCountdown(callback) {
             callback();
         }
     }, 1000);
-}
-
-function startTimer() {
-    if (gameTimer) clearInterval(gameTimer);
-    gameTimer = setInterval(() => {
-        if (isPaused) return;
-        timeLeft--;
-        updateUI();
-        if (timeLeft <= 0) {
-            gameOver("timeout");
-        }
-    }, 1000);
-}
-
-function updateUI() {
-    scoreVal.innerText = score;
-    const percentage = (timeLeft / totalInitialTime) * 100;
-    timerBar.style.width = percentage + "%";
-
-    // Change color based on time remaining
-    if (percentage < 25) {
-        timerBar.style.background = "linear-gradient(90deg, #ff4d4d, #ff0000)";
-    } else {
-        timerBar.style.background = "linear-gradient(90deg, #FFD700, #FFA500)";
-    }
 }
 
 function updateScore(delta) {
@@ -481,7 +491,8 @@ function shuffleRemainingCards() {
     // 2. Last: Perform logical shuffle in DOM
     for (let i = cards.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        gameBoard.insertBefore(cards[i], cards[j]);
+        const shuffled = [...cards].sort(() => Math.random() - 0.5);
+        shuffled.forEach(card => gameBoard.appendChild(card));
     }
 
     // Record new positions after DOM update
@@ -790,23 +801,28 @@ document.addEventListener("click", (e) => {
         playSFX(sfxPop);
     }
 });
-
-window.addEventListener("resize", () => {
-    if (!isGameRunning) return;
+ 
+function updateBoardLayout() {
     const totalCards = totalPairs * 2;
+
     let cols = Math.ceil(Math.sqrt(totalCards));
     let rows = Math.ceil(totalCards / cols);
 
     if (totalCards % cols === 1) {
         cols--;
+        rows = Math.ceil(totalCards / cols);
     }
+
     const screenWidth = window.innerWidth;
     const screenHeight = window.innerHeight;
+
     let cardSize = Math.min(
         (screenWidth * 0.9) / cols,
         (screenHeight * 0.6) / rows
     );
+
     cardSize = Math.max(50, Math.min(100, cardSize));
+
     gameBoard.style.gridTemplateColumns = `repeat(${cols}, ${cardSize}px)`;
     gameBoard.style.maxWidth = `${cardSize * cols}px`;
-});
+}
