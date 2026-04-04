@@ -161,16 +161,14 @@ function renderTopics() {
 
 function showCombo(multiplier) {
     const comboText = document.getElementById("combo-text");
-
-    comboText.innerText = `x${multiplier} 🔥`;
-
+    const comboNumber = document.getElementById("combo-number");
+    comboNumber.innerText = `x${multiplier}`;
     comboText.classList.remove("combo-show");
     void comboText.offsetWidth;
     comboText.classList.add("combo-show");
-
     setTimeout(() => {
         comboText.classList.remove("combo-show");
-    }, 800);
+    }, 900);
 }
 
 function showFrame(frameId) {
