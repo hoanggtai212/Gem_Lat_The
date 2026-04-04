@@ -21,6 +21,20 @@ body {
     background-attachment: fixed;
 }
 
+.modal-overlay {
+    z-index: 999;
+}
+
+.game-screen {
+    z-index: 1;
+    position: relative;
+}
+
+.main-container {
+    z-index: 1;
+    position: relative;
+}
+
 .game-board {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
