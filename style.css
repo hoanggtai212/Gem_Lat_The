@@ -29,21 +29,17 @@ body {
     background-attachment: fixed;
 }
 
-.card:active,
-.btn:active {
-    transform: scale(1);
-}
-
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-
+    background: rgba(0, 0, 0, 0.85);
     z-index: 100;
     display: none;
-    pointer-events: all;
+    align-items: center;
+    justify-content: center;
 }
 
 .game-screen {
@@ -52,8 +48,14 @@ body {
 }
 
 .main-container {
-    z-index: 1;
     position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
 }
 
 .game-board {
@@ -91,17 +93,6 @@ body {
     background-image: url("data:image/svg+xml,%3Csvg width='100' height='30' viewBox='0 0 100 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 15 Q25 5, 50 15 T100 15' fill='none' stroke='%23ff1493' stroke-width='1.5'/%3E%3C/svg%3E");
     background-size: 120px 35px;
     opacity: 0.2;
-}
-
-.main-container {
-    position: relative;
-    z-index: 10;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    padding: 20px;
 }
 
 .game-title {
@@ -238,6 +229,8 @@ body {
 }
 
 .btn {
+    position: relative;
+    z-index: 1000;
     font-family: 'Montserrat', sans-serif;
     font-size: 1.1rem;
     font-weight: 700;
@@ -641,21 +634,6 @@ body {
     box-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
     transition: width 0.3s linear;
     /* Smooth movement */
-}
-
-/* Modal Styling */
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.85);
-    z-index: 100;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    backdrop-filter: blur(5px);
 }
 
 .modal-content {
