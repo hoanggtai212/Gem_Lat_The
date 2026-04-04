@@ -764,22 +764,13 @@ music.addEventListener("ended", () => {
 
 function playSFX(audio) {
     if (!audio) return;
-    // 🔥 CHẶN NGAY KHI MUTE
     if (SoundManager.masterVolume <= 0) return;
-    audio.pause();
-    audio.currentTime = 0;
-    audio.volume = SoundManager.masterVolume;
-function playSFX(audio) {
-    if (!audio) return;
-    if (SoundManager.masterVolume <= 0) return;
-
     try {
         audio.pause();
         audio.currentTime = 0;
         audio.volume = SoundManager.masterVolume;
         audio.play();
     } catch (e) {}
-}
 }
 
 const volumeSlider = document.getElementById("volume-slider");
