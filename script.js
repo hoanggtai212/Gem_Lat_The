@@ -112,25 +112,25 @@ let isGameRunning = false;
 let canClick = false;
 let isPaused = false;
 let consecutiveMistakes = 0;
+let volumeSlider;
+let volumeValue;
 
 window.onload = () => {
-    const savedVolume = localStorage.getItem("game_volume");
-    const savedTopic = localStorage.getItem("game_topic");
-
-if (savedVolume !== null) {
-    SoundManager.setVolume(parseFloat(savedVolume));
-}
-syncVolumeUI();
-
+    volumeSlider = document.getElementById("volume-slider");
+    volumeValue = document.getElementById("volume-value");
+    if (savedVolume !== null) {
+        SoundManager.setVolume(parseFloat(savedVolume));
+    }
     if (savedTopic) {
         currentTopic = savedTopic;
     }
-
     renderTopics();
     renderPlaylist();
-
-    volumeSlider.value = SoundManager.masterVolume * 100;
-    volumeValue.innerText = volumeSlider.value + "%";
+    if (volumeSlider && volumeValue) {
+        volumeSlider.value = SoundManager.masterVolume * 100;
+        volumeValue.innerText = volumeSlider.value + "%";
+    }
+    syncVolumeUI();
 };
 
 function renderTopics() {
