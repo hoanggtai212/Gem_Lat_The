@@ -15,6 +15,7 @@ const modalTitle = document.getElementById("modal-title");
 const finalScoreVal = document.getElementById("final-score-val");
 const countdownOverlay = document.getElementById("countdown-overlay");
 const countdownText = document.getElementById("countdown-text");
+const savedMusicState = localStorage.getItem("music_enabled");
 
 const sfxWin = document.getElementById("sound-win");
 const sfxFail = document.getElementById("sound-fail");
@@ -119,14 +120,22 @@ const savedTopic = localStorage.getItem("game_topic");
 
 window.onload = () => {
     SoundManager.init();
+    
+    if (savedMusicState !== null) {
+        isMusicPlaying = savedMusicState === "true";
+    }
+    
     if (savedVolume !== null) {
         SoundManager.setVolume(parseFloat(savedVolume));
     }
+    
     if (savedTopic) {
         currentTopic = savedTopic;
     }
+    
     renderTopics();
     renderPlaylist();
+    
     if (volumeSlider && volumeValue) {
         volumeSlider.value = SoundManager.masterVolume * 100;
         volumeValue.innerText = volumeSlider.value + "%";
@@ -276,9 +285,9 @@ function startGame(level) {
     canClick = false;
     levelVal.innerText = level;
 
-    if (!isMusicPlaying) {
+if (isMusicPlaying) {
     playTrack(currentTrackIndex);
-    }
+}
     
     // Reset Stats
     score = 100;
@@ -718,10 +727,12 @@ function toggleMusic() {
     if (isMusicPlaying) {
         music.pause();
         isMusicPlaying = false;
-        updateMusicButtonUI();
     } else {
         playTrack(currentTrackIndex);
+        isMusicPlaying = true;
     }
+    localStorage.setItem("music_enabled", isMusicPlaying);
+    updateMusicButtonUI();
 }
 
 function openPlaylist() {
