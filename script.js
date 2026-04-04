@@ -822,6 +822,16 @@ function applyVolume() {
     sfxMoney.volume = v;
 }
 
+let lastTouchEnd = 0;
+
+document.addEventListener('touchend', function (event) {
+    const now = Date.now();
+    if (now - lastTouchEnd <= 300) {
+        event.preventDefault(); // 🔥 chặn double tap zoom
+    }
+    lastTouchEnd = now;
+}, false);
+
 function updateScore(delta) {
     score += delta;
     if (score <= 0) {
