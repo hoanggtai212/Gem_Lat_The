@@ -22,11 +22,54 @@ const sfxPop = document.getElementById("sound-pop");
 const sfxSwap = document.getElementById("sound-swap");
 const sfxTing = document.getElementById("sound-ting");
 const sfxMoney = document.getElementById("sound-money");
+const SoundManager = {
+    masterVolume: 1,
+    sounds: {},
+
+    init() {
+        this.sounds = {
+            win: document.getElementById("sound-win"),
+            fail: document.getElementById("sound-fail"),
+            pop: document.getElementById("sound-pop"),
+            swap: document.getElementById("sound-swap"),
+            ting: document.getElementById("sound-ting"),
+            money: document.getElementById("sound-money"),
+            music: document.getElementById("bg-music"),
+        };
+    },
+
+    setVolume(v) {
+        this.masterVolume = v;
+
+        Object.values(this.sounds).forEach(audio => {
+            audio.volume = v;
+        });
+    },
+
+    play(name) {
+        const sound = this.sounds[name];
+        if (!sound) return;
+
+        sound.currentTime = 0;
+        sound.volume = this.masterVolume;
+        sound.play();
+    },
+
+    playMusic() {
+        const music = this.sounds.music;
+        music.volume = this.masterVolume;
+        music.play();
+    },
+
+    stopMusic() {
+        this.sounds.music.pause();
+    }
+};
 
 let isMusicPlaying = false;
 let currentTopic = "Gavv";
 let currentLevel = 1;
-let masterVolume = 0.5;
+SoundManager.masterVolume = 0.5;
 let combo = 0;
 let maxCombo = 0;
 
@@ -638,7 +681,13 @@ function playTrack(index) {
 
     currentTrackIndex = index;
     music.src = playlist[index];
-    music.volume = masterVolume;
+    music.volume = SoundManager.masterVolume;
+sfxWin.volume = SoundManager.masterVolume;
+sfxFail.volume = SoundManager.masterVolume;
+sfxPop.volume = SoundManager.masterVolume;
+sfxSwap.volume = SoundManager.masterVolume;
+sfxTing.volume = SoundManager.masterVolume;
+sfxMoney.volume = SoundManager.masterVolume;
     music
         .play()
         .then(() => {
@@ -715,7 +764,7 @@ function playSFX(audio) {
     if (!audio) return;
     audio.pause();          // reset
     audio.currentTime = 0;
-    audio.volume = masterVolume; // 🔥 luôn dùng masterVolume
+    audio.volume = SoundManager.masterVolume;
     audio.play().catch(() => {});
 }
 
@@ -727,26 +776,14 @@ const volumeSlider = document.getElementById("volume-slider");
 const volumeValue = document.getElementById("volume-value");
 
 if (volumeSlider) {
-    volumeSlider.addEventListener("input", () => {
-        const vol = volumeSlider.value / 100;
-        masterVolume = vol;
+    volumeSlider.addEventListener("input", (e) => {
+    const v = e.target.value / 100;
 
-        localStorage.setItem("game_volume", vol); // ✅ lưu
-        
-        // update số %
-        if (volumeValue) {
-            volumeValue.innerText = volumeSlider.value + "%";
-        }
+    volumeValue.innerText = e.target.value + "%";
 
-        // âm thanh
-        music.volume = vol;
-        sfxWin.volume = vol;
-        sfxFail.volume = vol;
-        sfxPop.volume = vol;
-        sfxSwap.volume = vol;
-        sfxTing.volume = vol;
-        sfxMoney.volume = vol;
-    });
+    SoundManager.setVolume(v);
+    applyVolume();
+});
 }
 
 document.addEventListener("click", (e) => {
@@ -756,10 +793,20 @@ document.addEventListener("click", (e) => {
 });
 
 document.addEventListener("click", () => {
-    if (music.paused) {
-        music.play().catch(() => {});
-    }
+    music.volume = SoundManager.masterVolume;
+    music.play().catch(() => {});
 }, { once: true });
+
+function applyVolume() {
+    const v = SoundManager.masterVolume;
+    music.volume = v;
+    sfxWin.volume = v;
+    sfxFail.volume = v;
+    sfxPop.volume = v;
+    sfxSwap.volume = v;
+    sfxTing.volume = v;
+    sfxMoney.volume = v;
+}
 
 function updateScore(delta) {
     score += delta;
@@ -783,7 +830,6 @@ function updateScore(delta) {
     }, 500);
 }
 
-    
 function updateBoardLayout() {
     const totalCards = totalPairs * 2;
 
@@ -808,3 +854,5 @@ function updateBoardLayout() {
     gameBoard.style.gridTemplateColumns = `repeat(${cols}, ${cardSize}px)`;
     gameBoard.style.maxWidth = `${cardSize * cols}px`;
 }
+
+SoundManager.init();
