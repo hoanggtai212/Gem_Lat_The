@@ -811,8 +811,8 @@ body {
 
 .card {
     aspect-ratio: 2/3;
-    width: clamp(55px, 8vw, 80px); /* 🔥 giảm lại */
-    max-width: 80px;
+    width: clamp(45px, 6vw, 70px); /* nhỏ lại */
+    max-width: 70px;
 }
 
 .card.flipped {
@@ -984,6 +984,6 @@ body {
     }
 
     .card {
-        max-width: 110px;
+        max-width: 75px;
     }
 }
