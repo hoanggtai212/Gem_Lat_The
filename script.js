@@ -852,27 +852,17 @@ function updateScore(delta) {
 
 function updateBoardLayout() {
     const totalCards = totalPairs * 2;
-
-    let cols = Math.ceil(Math.sqrt(totalCards));
-    let rows = Math.ceil(totalCards / cols);
-
-    if (totalCards % cols === 1) {
-        cols--;
-        rows = Math.ceil(totalCards / cols);
+    const isLandscape = window.innerWidth > window.innerHeight;
+    let cols;
+    if (isLandscape) {
+        // 📱 ngang → nhiều cột hơn
+        cols = Math.ceil(Math.sqrt(totalCards * 1.5));
+    } else {
+        // 📱 dọc → ít cột lại cho đỡ nhỏ
+        cols = Math.ceil(Math.sqrt(totalCards));
     }
-
-    const screenWidth = window.innerWidth;
-    const screenHeight = window.innerHeight;
-
-    let cardSize = Math.min(
-        (screenWidth * 0.9) / cols,
-        (screenHeight * 0.6) / rows
-    );
-
-    cardSize = Math.max(50, Math.min(100, cardSize));
-
-    gameBoard.style.gridTemplateColumns = `repeat(${cols}, ${cardSize}px)`;
-    gameBoard.style.maxWidth = `${cardSize * cols}px`;
+    const rows = Math.ceil(totalCards / cols);
+    gameBoard.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
 }
 
 document.addEventListener("click", (e) => {
