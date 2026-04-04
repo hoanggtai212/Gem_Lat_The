@@ -191,6 +191,34 @@ function startTimer() {
     }, 1000);
 }
 
+function runCountdown(callback) {
+    countdownOverlay.style.display = "flex";
+    let count = 3;
+
+    const updateCount = (val) => {
+        countdownText.innerText = val;
+        countdownText.classList.remove("count-animate");
+        void countdownText.offsetWidth; // Trigger reflow
+        countdownText.classList.add("count-animate");
+        playSFX(sfxTing);
+    };
+
+    updateCount(count);
+
+    const countInt = setInterval(() => {
+        count--;
+        if (count > 0) {
+            updateCount(count);
+        } else if (count === 0) {
+            updateCount("GO!");
+        } else {
+            clearInterval(countInt);
+            countdownOverlay.style.display = "none";
+            callback();
+        }
+    }, 1000);
+}
+
 function startGame(level) {
     currentLevel = level;
     levelVal.innerText = level;
@@ -223,31 +251,6 @@ function startGame(level) {
     setupGame(level);
     updateBoardLayout();
     
-    const totalCards = totalPairs * 2;
-let cols = Math.ceil(Math.sqrt(totalCards));
-let rows = Math.ceil(totalCards / cols);
-
-// 🔥 FIX lệch hàng cuối
-if (totalCards % cols === 1) {
-    cols--;
-}
-
-let finalCols = cols;
-
-// ✅ TÍNH SIZE CARD (QUAN TRỌNG)
-const screenWidth = window.innerWidth;
-const screenHeight = window.innerHeight;
-
-let cardSize = Math.min(
-    (screenWidth * 0.9) / finalCols,
-    (screenHeight * 0.6) / rows
-);
-
-cardSize = Math.max(50, Math.min(100, cardSize));
-
-// ✅ SET GRID (CHỈ 1 LẦN)
-gameBoard.style.display = "grid";
-gameBoard.style.gridTemplateColumns = `repeat(${finalCols}, ${cardSize}px)`;
 gameBoard.style.justifyContent = "center";
 gameBoard.style.alignContent = "center";
 gameBoard.style.justifyItems = "center";
@@ -263,56 +266,7 @@ runCountdown(() => {
 // Background
 if (backgroundInterval) clearInterval(backgroundInterval);
 spawnBackgroundBatch();
-backgroundInterval = setInterval(spawnBackgroundBatch, 5000);
-
-function runCountdown(callback) {
-    countdownOverlay.style.display = "flex";
-    let count = 3;
-
-    const updateCount = (val) => {
-        countdownText.innerText = val;
-        countdownText.classList.remove("count-animate");
-        void countdownText.offsetWidth; // Trigger reflow
-        countdownText.classList.add("count-animate");
-        playSFX(sfxTing);
-    };
-
-    updateCount(count);
-
-    const countInt = setInterval(() => {
-        count--;
-        if (count > 0) {
-            updateCount(count);
-        } else if (count === 0) {
-            updateCount("GO!");
-        } else {
-            clearInterval(countInt);
-            countdownOverlay.style.display = "none";
-            callback();
-        }
-    }, 1000);
-}
-
-function updateScore(delta) {
-    score += delta;
-    if (score <= 0) {
-        score = 0;
-        scoreVal.innerText = score.toLocaleString();
-        gameOver("no-score"); // Fail if score is 0
-        return;
-    }
-
-    scoreVal.innerText = score;
-
-    // Animations
-    const animClass = delta > 0 ? "score-up" : "score-down";
-    scoreVal.classList.remove("score-up", "score-down");
-    void scoreVal.offsetWidth; // Trigger reflow
-    scoreVal.classList.add(animClass);
-
-    setTimeout(() => {
-        scoreVal.classList.remove(animClass);
-    }, 500);
+backgroundInterval = setInterval(spawnBackgroundBatch, 8000);
 }
 
 function setupGame(level) {
@@ -349,7 +303,10 @@ function setupGame(level) {
         }));
     }
 
-    deck.sort(() => Math.random() - 0.5);
+    for (let i = deck.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [deck[i], deck[j]] = [deck[j], deck[i]];
+    }
 
     const backImg = `asset/img/${currentTopic}/back.jpg`;
 
@@ -487,13 +444,6 @@ function shuffleRemainingCards() {
         const rect = card.getBoundingClientRect();
         return { left: rect.left, top: rect.top };
     });
-
-    // 2. Last: Perform logical shuffle in DOM
-    for (let i = cards.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        const shuffled = [...cards].sort(() => Math.random() - 0.5);
-        shuffled.forEach(card => gameBoard.appendChild(card));
-    }
 
     // Record new positions after DOM update
     const lastPositions = cards.map((card) => {
@@ -669,7 +619,7 @@ function spawnBackgroundBatch() {
 }
 
 function playTrack(index) {
-    if (currentTrackIndex === index && music.src.includes(playlist[index])) {
+    if (currentTrackIndex === index) {
         if (isMusicPlaying) {
             music.pause();
             isMusicPlaying = false;
@@ -801,7 +751,34 @@ document.addEventListener("click", (e) => {
         playSFX(sfxPop);
     }
 });
- 
+
+document.addEventListener("click", () => {
+    music.play().catch(() => {});
+}, { once: true });
+
+function updateScore(delta) {
+    score += delta;
+    if (score <= 0) {
+        score = 0;
+        scoreVal.innerText = score.toLocaleString();
+        gameOver("no-score"); // Fail if score is 0
+        return;
+    }
+
+    scoreVal.innerText = score;
+
+    // Animations
+    const animClass = delta > 0 ? "score-up" : "score-down";
+    scoreVal.classList.remove("score-up", "score-down");
+    void scoreVal.offsetWidth; // Trigger reflow
+    scoreVal.classList.add(animClass);
+
+    setTimeout(() => {
+        scoreVal.classList.remove(animClass);
+    }, 500);
+}
+
+    
 function updateBoardLayout() {
     const totalCards = totalPairs * 2;
 
