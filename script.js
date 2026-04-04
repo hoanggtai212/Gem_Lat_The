@@ -858,7 +858,7 @@ function updateBoardLayout() {
     } else {
         cols = Math.ceil(Math.sqrt(totalCards * 2)); // 🔥 desktop nhiều cột hơn
     }
-    gameBoard.style.gridTemplateColumns = `repeat(${cols}, auto)`; // 🔥 đổi 1fr → auto
+    gameBoard.style.gridTemplateColumns = `repeat(${cols}, min-content)`
 }
 
 document.addEventListener("click", (e) => {
