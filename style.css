@@ -35,6 +35,11 @@ body {
     position: relative;
 }
 
+.modal-overlay {
+    display: none;
+    pointer-events: all;
+}
+
 .game-board {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
